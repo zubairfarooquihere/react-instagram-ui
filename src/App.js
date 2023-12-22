@@ -1,11 +1,9 @@
-import classes from './App.module.scss'
+import React from "react";
 
-function App() {
-  return (
-    <div>
+import IndexRoutes from "./Routes/IndexRoutes";
 
-    </div>
-  );
-}
+const App = () => {
+  return <IndexRoutes />;
+};
 
 export default App;
