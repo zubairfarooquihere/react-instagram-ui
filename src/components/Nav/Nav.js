@@ -6,14 +6,20 @@ import classes from "./Nav.module.scss";
 
 import { instagram, instagramShort } from "../../ui/svg/Nav";
 import { more, moreSelect } from "../../ui/svg/Nav";
+
 import DropDown from "./DropDown/DropDown";
 import IconList from "./IconList";
+import NotificationSlider from "./Slider/NotificationSlider";
+import SearchSlider from "./Slider/SearchSlider";
 
-let moreToggle = true;
-let navInnerFull = true;
+import { Tooltip } from "react-tooltip";
+
+let opendropdown = false;
 function Nav() {
   const [scope, animate] = useAnimate();
   const [dropdown, setDropdown] = useState(false);
+  const [navInnerFull, setNavInnerFull] = useState(true);
+  const [openNotification, setOpenNotification] = useState(false);
 
   const animateSvg = (svgId) => {
     animate("#" + svgId, { scale: [1, 1.1, 1] }, { duration: 0.3 });
@@ -25,23 +31,23 @@ function Nav() {
     animate("#moreSelectSvg", { scale: 0.9 });
   };
 
-  const animateRemoveHoldLi = (liId) => {
+  const animateRemoveHoldLi = (moreToggle) => {
     if (moreToggle) {
-      animate("#" + liId, { opacity: 1 });
+      animate("#moreLiId", { opacity: 1 });
       animate("#moreSvg", { display: "none" });
-      animate("#" + liId + " span", { fontWeight: 700 });
+      animate("#moreLiId span", { fontWeight: 700 });
       animate("#moreSelectSvg", { scale: 1, display: "block" });
     } else {
-      animate("#" + liId, { opacity: 1 });
+      animate("#moreLiId", { opacity: 1 });
       animate("#moreSelectSvg", { display: "none" });
-      animate("#" + liId + " span", { fontWeight: 500 });
+      animate("#moreLiId span", { fontWeight: 500 });
       animate("#moreSvg", { scale: 1, display: "block" });
     }
-    moreToggle = !moreToggle;
+    opendropdown = moreToggle;
   };
 
   const animateInnerNav = (shortLogo) => {
-    navInnerFull = !navInnerFull;
+    setNavInnerFull(!navInnerFull);
     if (shortLogo) {
       // Logo Bottom
       animate("#logofull", { display: "none", opacity: 0, scale: 0 });
@@ -72,59 +78,90 @@ function Nav() {
   };
 
   const animateNotificationSlider = (open) => {
-    if (open) {
-      //sidebar Open
-      animate(
-        "#notificationSlider",
-        { left: 70, width: 405 },
-        { duration: 0.35 }
-      );
-    } else {
-      //sidebar Close
-      animate(
-        "#notificationSlider",
-        { left: "", width: "" },
-        { duration: 0.5 }
-      );
-    }
+    // if (open) {
+    //   //sidebar Open
+    //   animate(
+    //     "#notificationSlider",
+    //     { left: 70, width: 405 },
+    //     { duration: 0.35 }
+    //   );
+    //   setOpenNotification(true);
+    // } else {
+    //   //sidebar Close
+    //   animate(
+    //     "#notificationSlider",
+    //     { left: "", width: "" },
+    //     { duration: 0.5 }
+    //   );
+    //   setOpenNotification(false);
+    // }
+    setOpenNotification(!openNotification);
   };
 
   const animateSearchSlider = (open) => {
-    if (open) {
-      //sidebar Open
-      animate("#searchSlider", { left: 70, width: 405 }, { duration: 0.35 });
-    } else {
-      //sidebar Close
-      animate("#searchSlider", { left: "", width: "" }, { duration: 0.5 });
-    }
+    // if (open) {
+    //   //sidebar Open
+    //   animate("#searchSlider", { left: 70, width: 405 }, { duration: 0.35 });
+    // } else {
+    //   //sidebar Close
+    //   animate("#searchSlider", { left: "", width: "" }, { duration: 0.5 });
+    // }
   };
 
-  const handleClick = (event) => {
-    //console.log("close");
-  };
+  const tooltip = (
+    <Tooltip
+      id="my-tooltip"
+      place="right"
+      style={{
+        fontSize: "13px",
+        padding: "3px 6px",
+        paddingBottom: "5px",
+        borderRadius: "5px",
+        transition: "all .3s",
+        display: navInnerFull ? "none" : "block",
+      }}
+      render={({ content, activeAnchor }) => <span>{content}</span>}
+    />
+  );
 
   return (
     <>
       <div
-        onClick={handleClick}
         className={classes.navOutter}
         data-theme={false ? "dark" : "light"}
         ref={scope}
       >
-        <AnimatePresence>{dropdown && <DropDown setDropdown={setDropdown} />}</AnimatePresence>
-        <motion.div
-          id="notificationSlider"
-          className={classes.notificationSlider}
-        >
-          <h1>Notification Slider</h1>
-        </motion.div>
+        <AnimatePresence>
+          {dropdown && (
+            <DropDown
+              setDropdown={setDropdown}
+              animateRemoveHoldLi={animateRemoveHoldLi}
+            />
+          )}
+        </AnimatePresence>
 
-        <motion.div id="searchSlider" className={classes.searchSlider}>
+        <AnimatePresence>
+          {false && (
+            <SearchSlider />
+          )}
+        </AnimatePresence>
+
+        <AnimatePresence>
+          {openNotification && (
+            <NotificationSlider setOpenNotification={setOpenNotification} />
+          )}
+        </AnimatePresence>
+
+        {/* <motion.div id="searchSlider" className={classes.searchSlider}>
           <h1>Search Slider</h1>
-        </motion.div>
+        </motion.div> */}
 
         <motion.div className={classes.navInner} id="navInner">
-          <header className={classes.header}>
+          <header
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content="Instagram"
+            className={classes.header}
+          >
             <span id="logofull" className={classes.header__logofull}>
               {instagram}
             </span>
@@ -132,26 +169,30 @@ function Nav() {
               {instagramShort}
             </span>
           </header>
-
+          {/* --------------------------- */}
           <IconList
+            tooltip={tooltip}
             animateInnerNav={animateInnerNav}
             animateNotificationSlider={animateNotificationSlider}
             animateSearchSlider={animateSearchSlider}
             animateSvg={animateSvg}
           />
+          {/* --------------------------- */}
           <motion.footer
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content="Footer"
             className={classes.footer}
             onHoverStart={() => {
               animateSvg("moreSvg");
             }}
             onMouseUp={() => {
-              animateRemoveHoldLi("moreLiId");
+              animateRemoveHoldLi(!opendropdown);
             }}
             onMouseDown={() => {
               animateHoldLi("moreLiId", "moreSvg", "moreSelectSvg");
             }}
             onClick={() => {
-              setDropdown(!dropdown);
+              setDropdown(opendropdown);
             }}
           >
             <div id="moreLiId" className={classes.footer__inner}>

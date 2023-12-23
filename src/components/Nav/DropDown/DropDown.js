@@ -7,7 +7,7 @@ import FirstAppearance from "./FirstAppearance";
 import SwitchAppear from "./SwitchAppear";
 
 function DropDown(props) {
-  const { setDropdown } = props;
+  let { setDropdown, animateRemoveHoldLi } = props;
   const [appearance, setAppearance] = useState(false);
   const newRef = useRef(null);
 
@@ -22,11 +22,8 @@ function DropDown(props) {
     if (newRef.current && !newRef.current.contains(e.target)) {
       //console.log("Outside");
       setDropdown(false);
+      animateRemoveHoldLi();
     }
-  };
-
-  const handleClick = () => {
-    //console.log("Inside");
   };
 
   return (
@@ -35,7 +32,6 @@ function DropDown(props) {
       exit={{ opacity: 0 }}
       transition={{ duration: 0.23 }}
       ref={newRef}
-      onClick={handleClick}
     >
       <AnimatePresence mode="popLayout">
         {!appearance && (
