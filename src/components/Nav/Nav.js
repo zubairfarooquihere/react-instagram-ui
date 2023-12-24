@@ -9,7 +9,7 @@ import { more, moreSelect } from "../../ui/svg/Nav";
 
 import DropDown from "./DropDown/DropDown";
 import IconList from "./IconList";
-import NotificationSlider from "./Slider/NotificationSlider";
+import NotificationSlider from "../Notification/NotificationSlider";
 import SearchSlider from "./Slider/SearchSlider";
 
 import { Tooltip } from "react-tooltip";
