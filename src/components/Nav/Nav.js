@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 
 import { motion, useAnimate, AnimatePresence } from "framer-motion";
 
@@ -10,16 +10,22 @@ import { more, moreSelect } from "../../ui/svg/Nav";
 import DropDown from "./DropDown/DropDown";
 import IconList from "./IconList";
 import NotificationSlider from "../Notification/NotificationSlider";
-import SearchSlider from "./Slider/SearchSlider";
+import { useSelector } from "react-redux";
 
 import { Tooltip } from "react-tooltip";
 
+import { webinfoActions } from "../../redux/webinfo";
+import { useDispatch } from "react-redux";
 let opendropdown = false;
 function Nav() {
+  const dispatch = useDispatch();
+  const weninfo = useSelector((state) => state.weninfo);
   const [scope, animate] = useAnimate();
   const [dropdown, setDropdown] = useState(false);
   const [navInnerFull, setNavInnerFull] = useState(true);
+  //const [navOuterFull, setNavOuterFull] = useState(true);
   const [openNotification, setOpenNotification] = useState(false);
+  const [openSearch, setOpenSearch] = useState(false);
 
   const animateSvg = (svgId) => {
     animate("#" + svgId, { scale: [1, 1.1, 1] }, { duration: 0.3 });
@@ -46,67 +52,140 @@ function Nav() {
     opendropdown = moreToggle;
   };
 
-  const animateInnerNav = (shortLogo) => {
-    setNavInnerFull(!navInnerFull);
-    if (shortLogo) {
-      // Logo Bottom
-      animate("#logofull", { display: "none", opacity: 0, scale: 0 });
-      animate(
-        "#logoshort",
-        { display: "block", opacity: 1, scale: 1 },
-        { duration: 0.3 }
-      );
-      // Footer Bottom
-      animate("#footerText", { display: "none" });
-      animate("#moreLiId", { width: 50 }, { type: "tween", stiffness: 1 });
-      //navInner
-      animate("#navInner", { width: 70 }, { type: "tween", stiffness: 1 });
-    } else {
-      // Logo Bottom
-      animate(
-        "#logofull",
-        { display: "block", opacity: 1, scale: 1 },
-        { duration: 0.3 }
-      );
-      animate("#logoshort", { display: "none", opacity: 0, scale: 0 });
-      // Footer Bottom
-      animate("#footerText", { display: "block" });
-      animate("#moreLiId", { width: "" }, { type: "tween", stiffness: 1 });
-      //navInner
-      animate("#navInner", { width: "" }, { duration: 0.2 });
-    }
-  };
+  const animateOuterNav = useCallback(
+    (open) => {
+      console.log("animateOuterNav");
+      if (open) {
+        animate("#navOuter", { width: 70 });
+      } else {
+        animate("#navOuter", { width: 245 });
+      }
+    },
+    [animate]
+  );
+
+  const animateInnerNav = useCallback(
+    (shortLogo) => {
+      if (shortLogo) {
+        // Logo Bottom
+        setNavInnerFull(false);
+        animate("#logofull", { display: "none", opacity: 0, scale: 0 });
+        animate(
+          "#logoshort",
+          { display: "block", opacity: 1, scale: 1 },
+          { duration: 0.3 }
+        );
+        // Footer Bottom
+        animate("#footerText", { display: "none" });
+        animate("#moreLiId", { width: 50 }, { type: "tween", stiffness: 1 });
+        //navInner
+        animate("#navInner", { width: 70 }, { type: "tween", stiffness: 1 });
+      } else {
+        // Logo Bottom
+        if (window.innerWidth <= weninfo.minOuterNav) {
+          return;
+        }
+        setNavInnerFull(true);
+        animate(
+          "#logofull",
+          { display: "block", opacity: 1, scale: 1 },
+          { duration: 0.3 }
+        );
+        animate("#logoshort", { display: "none", opacity: 0, scale: 0 });
+        // Footer Bottom
+        animate("#footerText", { display: "block" });
+        animate("#moreLiId", { width: "" }, { type: "tween", stiffness: 1 });
+        //navInner
+        animate("#navInner", { width: "" }, { duration: 0.2 });
+      }
+    },
+    [animate, weninfo.minOuterNav]
+  );
 
   const animateNotificationSlider = (open) => {
-    // if (open) {
-    //   //sidebar Open
-    //   animate(
-    //     "#notificationSlider",
-    //     { left: 70, width: 405 },
-    //     { duration: 0.35 }
-    //   );
-    //   setOpenNotification(true);
-    // } else {
-    //   //sidebar Close
-    //   animate(
-    //     "#notificationSlider",
-    //     { left: "", width: "" },
-    //     { duration: 0.5 }
-    //   );
-    //   setOpenNotification(false);
-    // }
     setOpenNotification(!openNotification);
   };
 
   const animateSearchSlider = (open) => {
-    // if (open) {
-    //   //sidebar Open
-    //   animate("#searchSlider", { left: 70, width: 405 }, { duration: 0.35 });
-    // } else {
-    //   //sidebar Close
-    //   animate("#searchSlider", { left: "", width: "" }, { duration: 0.5 });
-    // }
+    setOpenSearch(!openSearch);
   };
+
+  const animateBottomNav = useCallback((open) => {
+    if (open) {
+      animate("#navOuter", { position: 'fixed', bottom: 0, height: 47, width: '100%' })
+      animate("#navInner header", { display: 'none' });
+      animate("#navInner footer", { display: 'none' });
+      animate("#navInner", { borderTop: '1px solid grey', display: 'flex', flexDirection: 'row' });
+    } else {
+      animate("#navOuter", { position: '', bottom: '', height: '', width: '' })
+      animate("#navInner footer", { display: '' });
+      animate("#navInner", { borderTop: '', display: '', flexDirection: '' });
+      animate("#navInner header", { display: '' });
+    }
+  },[animate]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      //dispatch(webinfoActions.resize(weninfo.minOuterNav + 1));
+      // if (
+      //   window.innerWidth <= weninfo.minOuterNav &&
+      //   window.innerWidth >= weninfo.minBottomNav
+      // ) {
+      //   animateOuterNav(true);
+      //   dispatch(webinfoActions.resize(weninfo.minBottomNav+1));
+      //   console.log('First True');
+      // } else if (window.innerWidth > weninfo.minOuterNav) {
+      //   animateOuterNav(false);
+      //   dispatch(webinfoActions.resize(weninfo.minBottomNav + 1));
+      //   console.log('Second True');
+      // } else if(window.innerWidth < weninfo.minBottomNav) {
+      //   console.log('bottom');
+      //   // animate("#navOuter", { position: 'fixed', bottom: 0, height: 47, width: '100%' })
+      //   // animate("#navInner header", { display: 'none' });
+      //   // animate("#navInner footer", { display: 'none' });
+      //   // animate("#navInner", { borderTop: '1px solid grey', display: 'flex', flexDirection: 'row' });
+      //   // dispatch(webinfoActions.resize(weninfo.minBottomNav+1));
+      //   console.log('Third True');
+      // }
+
+      if (weninfo.minOuterNav < window.innerWidth) {
+        console.log("First True");
+        animateOuterNav(false);
+        animateBottomNav(false);
+        dispatch(webinfoActions.resize(weninfo.minOuterNav + 1));
+      } else if (
+        weninfo.minOuterNav >= window.innerWidth &&
+        window.innerWidth > weninfo.minBottomNav
+      ) {
+        console.log("Second True");
+        animateOuterNav(true);
+        animateBottomNav(false);
+        dispatch(webinfoActions.resize(weninfo.minBottomNav + 10));
+      } else if (window.innerWidth < weninfo.minBottomNav) {
+        console.log("Third True");
+        animateBottomNav(true);
+        // animate("#navOuter", { position: 'fixed', bottom: 0, height: 47, width: '100%' })
+        // animate("#navInner header", { display: 'none' });
+        // animate("#navInner footer", { display: 'none' });
+        // animate("#navInner", { borderTop: '1px solid grey', display: 'flex', flexDirection: 'row' });
+        dispatch(webinfoActions.resize(weninfo.minBottomNav-1));
+      }
+    };
+    window.addEventListener("resize", handleResize);
+
+    handleResize();
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [
+    animateOuterNav,
+    dispatch,
+    weninfo.minOuterNav,
+    weninfo.minBottomNav,
+    animate,
+    animateBottomNav,
+  ]);
 
   const tooltip = (
     <Tooltip
@@ -117,7 +196,6 @@ function Nav() {
         padding: "3px 6px",
         paddingBottom: "5px",
         borderRadius: "5px",
-        transition: "all .3s",
         display: navInnerFull ? "none" : "block",
       }}
       render={({ content, activeAnchor }) => <span>{content}</span>}
@@ -126,89 +204,86 @@ function Nav() {
 
   return (
     <>
-      <div
-        className={classes.navOutter}
-        data-theme={false ? "dark" : "light"}
-        ref={scope}
-      >
-        <AnimatePresence>
-          {dropdown && (
-            <DropDown
-              setDropdown={setDropdown}
-              animateRemoveHoldLi={animateRemoveHoldLi}
+      <span ref={scope}>
+        <div
+          className={classes.navOutter}
+          data-theme={false ? "dark" : "light"}
+          id="navOuter"
+        >
+          <AnimatePresence>
+            {dropdown && (
+              <DropDown
+                setDropdown={setDropdown}
+                animateRemoveHoldLi={animateRemoveHoldLi}
+              />
+            )}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {openSearch && <NotificationSlider />}
+          </AnimatePresence>
+
+          <AnimatePresence>
+            {openNotification && (
+              <NotificationSlider setOpenNotification={setOpenNotification} />
+            )}
+          </AnimatePresence>
+
+          <motion.div className={classes.navInner} id="navInner">
+            <header
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content="Instagram"
+              className={classes.header}
+            >
+              <span id="logofull" className={classes.header__logofull}>
+                {instagram}
+              </span>
+              <span id="logoshort" className={classes.header__logoshort}>
+                {instagramShort}
+              </span>
+            </header>
+            {/* ------------------------------------------------------ */}
+            <IconList
+              tooltip={tooltip}
+              animateInnerNav={animateInnerNav}
+              animateNotificationSlider={animateNotificationSlider}
+              animateSearchSlider={animateSearchSlider}
+              animateSvg={animateSvg}
             />
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {false && (
-            <SearchSlider />
-          )}
-        </AnimatePresence>
-
-        <AnimatePresence>
-          {openNotification && (
-            <NotificationSlider setOpenNotification={setOpenNotification} />
-          )}
-        </AnimatePresence>
-
-        {/* <motion.div id="searchSlider" className={classes.searchSlider}>
-          <h1>Search Slider</h1>
-        </motion.div> */}
-
-        <motion.div className={classes.navInner} id="navInner">
-          <header
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Instagram"
-            className={classes.header}
-          >
-            <span id="logofull" className={classes.header__logofull}>
-              {instagram}
-            </span>
-            <span id="logoshort" className={classes.header__logoshort}>
-              {instagramShort}
-            </span>
-          </header>
-          {/* --------------------------- */}
-          <IconList
-            tooltip={tooltip}
-            animateInnerNav={animateInnerNav}
-            animateNotificationSlider={animateNotificationSlider}
-            animateSearchSlider={animateSearchSlider}
-            animateSvg={animateSvg}
-          />
-          {/* --------------------------- */}
-          <motion.footer
-            data-tooltip-id="my-tooltip"
-            data-tooltip-content="Footer"
-            className={classes.footer}
-            onHoverStart={() => {
-              animateSvg("moreSvg");
-            }}
-            onMouseUp={() => {
-              animateRemoveHoldLi(!opendropdown);
-            }}
-            onMouseDown={() => {
-              animateHoldLi("moreLiId", "moreSvg", "moreSelectSvg");
-            }}
-            onClick={() => {
-              setDropdown(opendropdown);
-            }}
-          >
-            <div id="moreLiId" className={classes.footer__inner}>
-              <span id="moreSvg" className={classes.footer__svg}>
-                {more}
-              </span>
-              <p id="moreSelectSvg" className={classes.footer__svgSelected}>
-                {moreSelect}
-              </p>
-              <span id="footerText" className={classes.footer__text}>
-                More
-              </span>
-            </div>
-          </motion.footer>
-        </motion.div>
-      </div>
+            {/* ------------------------------------------------------ */}
+            <motion.footer
+              id="navFooter"
+              data-tooltip-id="my-tooltip"
+              data-tooltip-content="Footer"
+              className={classes.footer}
+              onHoverStart={() => {
+                animateSvg("moreSvg");
+              }}
+              onMouseUp={() => {
+                animateRemoveHoldLi(!opendropdown);
+              }}
+              onMouseDown={() => {
+                animateHoldLi("moreLiId", "moreSvg", "moreSelectSvg");
+              }}
+              onClick={() => {
+                setDropdown(opendropdown);
+              }}
+            >
+              <div id="moreLiId" className={classes.footer__inner}>
+                <span id="moreSvg" className={classes.footer__svg}>
+                  {more}
+                </span>
+                <p id="moreSelectSvg" className={classes.footer__svgSelected}>
+                  {moreSelect}
+                </p>
+                <span id="footerText" className={classes.footer__text}>
+                  More
+                </span>
+              </div>
+            </motion.footer>
+          </motion.div>
+        </div>
+      </span>
     </>
   );
 }

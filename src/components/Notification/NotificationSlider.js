@@ -51,7 +51,7 @@ function generateRandomNames(number) {
 }
 
 function NotificationSlider(props) {
-  const { setOpenNotification } = props;
+  //const { } = props;
   const newRef = useRef(null);
   const [weekData, setWeekData] = useState([]);
   const [monthData, setMonthData] = useState([]);
@@ -59,10 +59,10 @@ function NotificationSlider(props) {
 
   const handleOutsideNotification = useCallback((e) => {
     if (newRef.current && !newRef.current.contains(e.target)) {
-      console.log('handleOutsideNotification');
-      setOpenNotification(false);
+      //console.log('handleOutsideNotification');
+      //setOpenNotification(false);
     }
-  }, [setOpenNotification]);
+  }, []);
 
   useEffect(() => {
     document.addEventListener("mousedown", handleOutsideNotification);

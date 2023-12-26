@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useEffect } from "react";
 import { motion, useAnimate } from "framer-motion";
 
 import {
@@ -19,7 +19,7 @@ import {
 import Logo from "../../ui/Logoa.svg";
 
 import IconItem from "./IconItem";
-
+import { useSelector } from "react-redux";
 import classes from "./IconList.module.scss";
 
 const IconItemList = [
@@ -44,7 +44,8 @@ function IconList(props) {
     animateSearchSlider,
     tooltip,
   } = props;
-
+  const weninfo = useSelector((state) => state.weninfo);
+  //console.log('IconList '+weninfo.screenSize);
   const [scope, animate] = useAnimate();
 
   const animateRemoveHoldLi = (liId, svgId, selectedSvgId) => {
@@ -69,37 +70,60 @@ function IconList(props) {
     }
   };
 
-  const animateShowHideText = () => {
-    hideToggleListItem = !hideToggleListItem;
-    animateInnerNav(hideToggleListItem);
-    if (hideToggleListItem) {
-      //Text in front of svg
-      animate("ul li ." + classes.list__text, { display: "none" });
-    } else {
-      animate("ul li ." + classes.list__text, { display: "block" });
-    }
-  };
-
-  const controlNotificationSlider = () => {
-    letNotificationSlider = !letNotificationSlider;
-    if (letSearchSlider === false) {
-      animateShowHideText();
-    }
-    animateNotificationSlider(letNotificationSlider);
-    letSearchSlider = false;
-    animateSearchSlider(false);
-  };
+  const animateShowHideText = useCallback(
+    (hideToggleListItem) => {
+      animateInnerNav(hideToggleListItem);
+      if (hideToggleListItem) {
+        //Text in front of svg
+        animate("ul li ." + classes.list__text, { display: "none" });
+      } else {
+        animate("ul li ." + classes.list__text, {
+          display: window.innerWidth <= weninfo.minOuterNav ? "none" : "block",
+        });
+      }
+    },
+    [animateInnerNav, animate, weninfo.minOuterNav]
+  );
 
   const controlSearchSlider = () => {
     letSearchSlider = !letSearchSlider;
-    if (letNotificationSlider === false) {
-      animateShowHideText();
+    if (letSearchSlider) {
+      if (letNotificationSlider) {
+        animateNotificationSlider(false);
+      }
+      animateShowHideText(true);
+    } else {
+      animateShowHideText(false);
     }
     animateSearchSlider(letSearchSlider);
     letNotificationSlider = false;
-    animateNotificationSlider(false);
   };
-  
+
+  const controlNotificationSlider = (open) => {
+    letNotificationSlider = !letNotificationSlider;
+    if (letNotificationSlider) {
+      if (letSearchSlider) {
+        animateSearchSlider(false);
+      }
+      animateShowHideText(true);
+    } else {
+      animateShowHideText(false);
+    }
+    animateNotificationSlider(letNotificationSlider);
+    letSearchSlider = false;
+  };
+
+  const closeSlider = () => {
+    if (letNotificationSlider) {
+      animateNotificationSlider(false);
+      letNotificationSlider = false;
+    }
+    if (letSearchSlider) {
+      animateSearchSlider(false);
+      letSearchSlider = false;
+    }
+  };
+
   const list = IconItemList.map((obj, index) => {
     return (
       <IconItem
@@ -113,24 +137,64 @@ function IconList(props) {
         title={obj.title}
         controlNotificationSlider={controlNotificationSlider}
         controlSearchSlider={controlSearchSlider}
+        animateShowHideText={animateShowHideText}
+        closeSlider={closeSlider}
       />
     );
   });
 
+  const animateBottomNav = useCallback((open) => {
+    if (open) {
+      animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly' });
+    } else {
+      animate("#ulNavID", { flexDirection: '', paddingTop: '', justifyContent: '' });
+    }
+  },[animate]);
+
+  useEffect(() => {
+    //console.log('IconList '+weninfo.screenSize);
+    // if (weninfo.screenSize <= weninfo.minOuterNav && weninfo.screenSize >= weninfo.minBottomNav) {
+    //   animateShowHideText(true);
+    // } else if (weninfo.screenSize > weninfo.minOuterNav) {
+    //   animateShowHideText(false);
+    // } else {
+    //   animateShowHideText(false);
+    //   animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly' });
+    // }
+    if (weninfo.screenSize > weninfo.minOuterNav) {
+      animateShowHideText(false);
+      animateBottomNav(false);
+      console.log('First IconList-1');
+      //weninfo.minOuterNav >= window.innerWidth && window.innerWidth > weninfo.minBottomNav
+    } else if (weninfo.screenSize <= weninfo.minOuterNav && weninfo.screenSize > weninfo.minBottomNav ) {
+      animateShowHideText(true);
+      animateBottomNav(false);
+      console.log('Second IconList-2');
+    } else {
+      animateShowHideText(false);
+      //animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly' });
+      animateBottomNav(true);
+      console.log('Third IconList-3');
+    }
+  }, [weninfo.screenSize, animateShowHideText, animate, weninfo.minBottomNav, weninfo.minOuterNav, animateBottomNav]);
+
   return (
     <>
       {tooltip}
-      <ul className={classes.list} ref={scope}>
-        {list}
-        <li
-          data-tooltip-id="my-tooltip"
-          data-tooltip-content="Profile"
-          className={classes.list__item}
-        >
-          <img className={classes.list__img} alt="" src={Logo} />
-          <span className={classes.list__text}>Profile</span>
-        </li>
-      </ul>
+      <span style={{ width: "100%" }} ref={scope}>
+        <ul id="ulNavID" className={classes.list} ref={scope}>
+          {list}
+          <li
+          id="profileLi"
+            data-tooltip-id="my-tooltip"
+            data-tooltip-content="Profile"
+            className={classes.list__item}
+          >
+            <img className={classes.list__img} alt="" src={Logo} />
+            <span className={classes.list__text}>Profile</span>
+          </li>
+        </ul>
+      </span>
     </>
   );
 }

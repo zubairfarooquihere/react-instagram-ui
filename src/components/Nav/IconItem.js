@@ -1,5 +1,5 @@
-import React from "react";
-
+import React, {useEffect, useCallback} from "react";
+import { useSelector } from "react-redux";
 function IconItem(props) {
   const {
     svg,
@@ -11,7 +11,11 @@ function IconItem(props) {
     classes,
     motion,
     animate,
+    animateShowHideText,
+    closeSlider,
   } = props;
+
+  const weninfo = useSelector((state) => state.weninfo);
 
   const liId = `${title}LiId`;
   const svgId = `${title}Svg`;
@@ -26,6 +30,36 @@ function IconItem(props) {
     animate("#" + liId, { opacity: 0.7 });
     animate("#" + svgId, { scale: 0.9 });
   };
+
+  const animateBottomNav = useCallback((open) => {
+    if (open) {
+      animate("#SearchLiId", { display: 'none' });
+      animate("#MessagesLiId", { order: 5 });
+      animate("#" + liId, { minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
+      animate("#profileLi" , { order: 6, minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
+      animate("#NotificationsLiId", { display: 'none' });
+    } else {
+      animate("#SearchLiId", { display: '' });
+      animate("#MessagesLiId", { order: '' });
+      animate("#" + liId, { minHeight: '', marginRight: '', marginLeft: '', marginBottom: '', backgroundColor: '' });
+      animate("#profileLi" , { order: '', minHeight: '', marginRight: '', marginLeft: '', marginBottom: '', backgroundColor: '' });
+      animate("#NotificationsLiId", { display: '' });
+    }
+  },[animate, liId]);
+
+  useEffect(() => {
+    if(weninfo.screenSize <= weninfo.minBottomNav) {
+      animateBottomNav(true);
+    } else {
+      animateBottomNav(false);
+    }
+    //if(weninfo.scree)
+    // animate("#SearchLiId", { display: 'none' });
+    // animate("#NotificationsLiId", { display: 'none' });
+    // animate("#MessagesLiId", { order: 5 });
+    // animate("#" + liId, { minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
+    // animate("#profileLi" , { order: 6, minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
+  }, [animate, liId, animateBottomNav, weninfo]);
 
   return (
     <motion.li
@@ -44,6 +78,9 @@ function IconItem(props) {
           controlSearchSlider();
         } else if (svgId === `NotificationsSvg`) {
           controlNotificationSlider();
+        } else {
+          animateShowHideText(false);
+          closeSlider();
         }
       }}
     >
