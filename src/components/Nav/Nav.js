@@ -54,11 +54,11 @@ function Nav() {
 
   const animateOuterNav = useCallback(
     (open) => {
-      console.log("animateOuterNav");
       if (open) {
-        animate("#navOuter", { width: 70 });
+        console.log("True animateOuterNav");
+        animate("#navOuter", { width: '70px' });
       } else {
-        animate("#navOuter", { width: 245 });
+        animate("#navOuter", { width: '245px' });
       }
     },
     [animate]
@@ -110,44 +110,22 @@ function Nav() {
     setOpenSearch(!openSearch);
   };
 
-  const animateBottomNav = useCallback((open) => {
+  const animateBottomNav = useCallback((open, option) => {
     if (open) {
-      animate("#navOuter", { position: 'fixed', bottom: 0, height: 47, width: '100%' })
+      animate("#navOuter", { position: 'fixed', bottom: 0, height: 47, width: '100%', display: 'flex', justifyContent: 'space-evenly' })
       animate("#navInner header", { display: 'none' });
       animate("#navInner footer", { display: 'none' });
-      animate("#navInner", { borderTop: '1px solid grey', display: 'flex', flexDirection: 'row' });
+      animate("#navInner", { borderTop: '1px solid grey', display: 'flex', flexDirection: 'row', width: '100%' });
     } else {
-      animate("#navOuter", { position: '', bottom: '', height: '', width: '' })
+      animate("#navOuter", { position: '', bottom: '', height: '', display: '', justifyContent: ''})
       animate("#navInner footer", { display: '' });
-      animate("#navInner", { borderTop: '', display: '', flexDirection: '' });
       animate("#navInner header", { display: '' });
+      animate("#navInner", { borderTop: '', display: '', flexDirection: '', width: option === 'second' ? 70 : '' });
     }
   },[animate]);
 
   useEffect(() => {
     const handleResize = () => {
-      //dispatch(webinfoActions.resize(weninfo.minOuterNav + 1));
-      // if (
-      //   window.innerWidth <= weninfo.minOuterNav &&
-      //   window.innerWidth >= weninfo.minBottomNav
-      // ) {
-      //   animateOuterNav(true);
-      //   dispatch(webinfoActions.resize(weninfo.minBottomNav+1));
-      //   console.log('First True');
-      // } else if (window.innerWidth > weninfo.minOuterNav) {
-      //   animateOuterNav(false);
-      //   dispatch(webinfoActions.resize(weninfo.minBottomNav + 1));
-      //   console.log('Second True');
-      // } else if(window.innerWidth < weninfo.minBottomNav) {
-      //   console.log('bottom');
-      //   // animate("#navOuter", { position: 'fixed', bottom: 0, height: 47, width: '100%' })
-      //   // animate("#navInner header", { display: 'none' });
-      //   // animate("#navInner footer", { display: 'none' });
-      //   // animate("#navInner", { borderTop: '1px solid grey', display: 'flex', flexDirection: 'row' });
-      //   // dispatch(webinfoActions.resize(weninfo.minBottomNav+1));
-      //   console.log('Third True');
-      // }
-
       if (weninfo.minOuterNav < window.innerWidth) {
         console.log("First True");
         animateOuterNav(false);
@@ -159,15 +137,11 @@ function Nav() {
       ) {
         console.log("Second True");
         animateOuterNav(true);
-        animateBottomNav(false);
+        animateBottomNav(false, 'second');
         dispatch(webinfoActions.resize(weninfo.minBottomNav + 10));
       } else if (window.innerWidth < weninfo.minBottomNav) {
         console.log("Third True");
         animateBottomNav(true);
-        // animate("#navOuter", { position: 'fixed', bottom: 0, height: 47, width: '100%' })
-        // animate("#navInner header", { display: 'none' });
-        // animate("#navInner footer", { display: 'none' });
-        // animate("#navInner", { borderTop: '1px solid grey', display: 'flex', flexDirection: 'row' });
         dispatch(webinfoActions.resize(weninfo.minBottomNav-1));
       }
     };

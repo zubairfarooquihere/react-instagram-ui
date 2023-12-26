@@ -50,8 +50,10 @@ function IconItem(props) {
   useEffect(() => {
     if(weninfo.screenSize <= weninfo.minBottomNav) {
       animateBottomNav(true);
+      console.log('animateBottomNav(true)');
     } else {
       animateBottomNav(false);
+      console.log('animateBottomNav(false)');
     }
     //if(weninfo.scree)
     // animate("#SearchLiId", { display: 'none' });

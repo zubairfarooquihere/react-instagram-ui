@@ -145,9 +145,9 @@ function IconList(props) {
 
   const animateBottomNav = useCallback((open) => {
     if (open) {
-      animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly' });
+      animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly', left: 0, width: '100%' });
     } else {
-      animate("#ulNavID", { flexDirection: '', paddingTop: '', justifyContent: '' });
+      animate("#ulNavID", { flexDirection: '', paddingTop: '', justifyContent: '', left: '', width: '' });
     }
   },[animate]);
 
@@ -167,13 +167,13 @@ function IconList(props) {
       console.log('First IconList-1');
       //weninfo.minOuterNav >= window.innerWidth && window.innerWidth > weninfo.minBottomNav
     } else if (weninfo.screenSize <= weninfo.minOuterNav && weninfo.screenSize > weninfo.minBottomNav ) {
-      animateShowHideText(true);
       animateBottomNav(false);
+      animateShowHideText(true);
       console.log('Second IconList-2');
     } else {
-      animateShowHideText(false);
       //animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly' });
       animateBottomNav(true);
+      animateShowHideText(false);
       console.log('Third IconList-3');
     }
   }, [weninfo.screenSize, animateShowHideText, animate, weninfo.minBottomNav, weninfo.minOuterNav, animateBottomNav]);
