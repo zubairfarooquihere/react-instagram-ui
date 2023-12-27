@@ -36,7 +36,7 @@ function IconItem(props) {
       animate("#SearchLiId", { display: 'none' });
       animate("#MessagesLiId", { order: 5 });
       animate("#" + liId, { minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
-      animate("#profileLi" , { order: 6, minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
+      animate("#ProfileLiId" , { order: 6, minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
       animate("#NotificationsLiId", { display: 'none' });
     } else {
       animate("#SearchLiId", { display: '' });

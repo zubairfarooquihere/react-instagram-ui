@@ -15,6 +15,8 @@ import {
   notification,
   notificationSelect,
   create,
+  profile,
+  profileSelected
 } from "../../ui/svg/Nav";
 import Logo from "../../ui/Logoa.svg";
 
@@ -30,6 +32,7 @@ const IconItemList = [
   { svg: messages, svgSelect: messagesSelect, title: "Messages" },
   { svg: notification, svgSelect: notificationSelect, title: "Notifications" },
   { svg: create, svgSelect: create, title: "Create" },
+  { svg: profile, svgSelect: profileSelected, title: "Profile" },
 ];
 
 let letSelectedSvgId = "";
@@ -79,7 +82,7 @@ function IconList(props) {
       } else {
         animate("ul li ." + classes.list__text, {
           display: window.innerWidth <= weninfo.minOuterNav ? "none" : "block",
-        });
+        }, );
       }
     },
     [animateInnerNav, animate, weninfo.minOuterNav]
@@ -152,15 +155,6 @@ function IconList(props) {
   },[animate]);
 
   useEffect(() => {
-    //console.log('IconList '+weninfo.screenSize);
-    // if (weninfo.screenSize <= weninfo.minOuterNav && weninfo.screenSize >= weninfo.minBottomNav) {
-    //   animateShowHideText(true);
-    // } else if (weninfo.screenSize > weninfo.minOuterNav) {
-    //   animateShowHideText(false);
-    // } else {
-    //   animateShowHideText(false);
-    //   animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly' });
-    // }
     if (weninfo.screenSize > weninfo.minOuterNav) {
       animateShowHideText(false);
       animateBottomNav(false);
@@ -185,6 +179,7 @@ function IconList(props) {
         <ul id="ulNavID" className={classes.list} ref={scope}>
           {list}
           <li
+          style={{display:'none'}}
           id="profileLi"
             data-tooltip-id="my-tooltip"
             data-tooltip-content="Profile"

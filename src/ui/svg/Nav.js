@@ -380,25 +380,17 @@ export const create = (
 );
 
 export const profile = (
-  <svg
-    version="1.1"
-    xmlns="http://www.w3.org/2000/svg"
-    xmlnsXlink="http://www.w3.org/1999/xlink"
-    width="600"
-    height="600"
-    stroke="black"
-    strokeWidth="30"
-    fill="none"
-  >
-    <title>Abstract user icon</title>
+  <svg width="24" height="24.5">
+  <circle cx="12" cy="12.5" r="11"
+  stroke="black" stroke-width="1.5" fill="white" />
+</svg>
+);
 
-    <circle cx="300" cy="300" r="265" />
-    <circle cx="300" cy="230" r="115" />
-    <path
-      d="M106.81863443903,481.4 a205,205 1 0,1 386.36273112194,0"
-      strokeLinecap="butt"
-    />
-  </svg>
+export const profileSelected = (
+  <svg width="24" height="24.5">
+  <circle cx="12" cy="12.5" r="11"
+  stroke="black" stroke-width="1.75" fill="white" />
+</svg>
 );
 
 export const more = (
@@ -460,5 +452,18 @@ export const moreSelect = (
   >
     <title>Settings</title>
     <path d="M3.5 6.5h17a1.5 1.5 0 0 0 0-3h-17a1.5 1.5 0 0 0 0 3Zm17 4h-17a1.5 1.5 0 0 0 0 3h17a1.5 1.5 0 0 0 0-3Zm0 7h-17a1.5 1.5 0 0 0 0 3h17a1.5 1.5 0 0 0 0-3Z"></path>
+  </svg>
+);
+
+export const profileTwo = (
+  <svg width="24" height="24">
+    <circle
+      cx="50"
+      cy="50"
+      r="40"
+      stroke="black"
+      stroke-width="4"
+      fill="white"
+    />
   </svg>
 );
