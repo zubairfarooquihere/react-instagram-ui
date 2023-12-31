@@ -382,14 +382,14 @@ export const create = (
 export const profile = (
   <svg width="24" height="24.5">
   <circle cx="12" cy="12.5" r="11"
-  stroke="black" stroke-width="1.5" fill="white" />
+  stroke="black" strokeWidth="1.5" fill="white" />
 </svg>
 );
 
 export const profileSelected = (
   <svg width="24" height="24.5">
   <circle cx="12" cy="12.5" r="11"
-  stroke="black" stroke-width="1.75" fill="white" />
+  stroke="black" strokeWidth="1.75" fill="white" />
 </svg>
 );
 
@@ -455,15 +455,3 @@ export const moreSelect = (
   </svg>
 );
 
-export const profileTwo = (
-  <svg width="24" height="24">
-    <circle
-      cx="50"
-      cy="50"
-      r="40"
-      stroke="black"
-      stroke-width="4"
-      fill="white"
-    />
-  </svg>
-);

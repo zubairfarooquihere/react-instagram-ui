@@ -8,7 +8,7 @@
 
 @mixin respond($breakpoint) {
   @if ($breakpoint == phone) {
-    @media only screen and (max-width: 37.5em) {
+    @media only screen and (max-width: 38.5em) {
       @content;
     } //600px
   }
@@ -16,6 +16,16 @@
     @media only screen and (max-width: 50em) {
       @content;
     } //800px
+  }
+  @if ($breakpoint == story-mode) {
+    @media only screen and (max-width: 60em) {
+      @content;
+    } //960px
+  }
+  @if ($breakpoint == page-home) {
+    @media only screen and (max-width: 70em) {
+      @content;
+    } //1156px
   }
   @if ($breakpoint == tab-land) {
     @media only screen and (max-width: 75em) {
@@ -39,6 +49,9 @@ html {
 
   @include respond(tab-port) { // width < 900?
       font-size: 50%; //1 rem = 8px, 8/16 = 50%
+  }
+  @include respond(page-home) { // width < 900?
+    font-size: 50%; //1 rem = 8px, 8/16 = 50%
   }
   
   @include respond(big-desktop) {

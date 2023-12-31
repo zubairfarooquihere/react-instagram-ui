@@ -23,7 +23,6 @@ function Nav() {
   const [scope, animate] = useAnimate();
   const [dropdown, setDropdown] = useState(false);
   const [navInnerFull, setNavInnerFull] = useState(true);
-  //const [navOuterFull, setNavOuterFull] = useState(true);
   const [openNotification, setOpenNotification] = useState(false);
   const [openSearch, setOpenSearch] = useState(false);
 
@@ -55,7 +54,6 @@ function Nav() {
   const animateOuterNav = useCallback(
     (open) => {
       if (open) {
-        console.log("True animateOuterNav");
         animate("#navOuter", { width: '70px' });
       } else {
         animate("#navOuter", { width: '245px' });
@@ -127,7 +125,6 @@ function Nav() {
   useEffect(() => {
     const handleResize = () => {
       if (weninfo.minOuterNav < window.innerWidth) {
-        console.log("First True");
         animateOuterNav(false);
         animateBottomNav(false);
         dispatch(webinfoActions.resize(weninfo.minOuterNav + 1));
@@ -135,12 +132,10 @@ function Nav() {
         weninfo.minOuterNav >= window.innerWidth &&
         window.innerWidth > weninfo.minBottomNav
       ) {
-        console.log("Second True");
         animateOuterNav(true);
         animateBottomNav(false, 'second');
         dispatch(webinfoActions.resize(weninfo.minBottomNav + 10));
       } else if (window.innerWidth < weninfo.minBottomNav) {
-        console.log("Third True");
         animateBottomNav(true);
         dispatch(webinfoActions.resize(weninfo.minBottomNav-1));
       }

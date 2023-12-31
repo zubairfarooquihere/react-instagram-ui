@@ -1,0 +1,38 @@
+@import "../../index.scss";
+.homepage {
+  min-height: 100vh;
+  width: 100%;
+  //background-color: whitesmoke;
+
+  display: flex;
+  justify-content: flex-end;
+
+  &__main {
+    height: 100%;
+    //width: 1155px;
+    width: 100%;
+    background-color: var(--white-color);
+    display: flex;
+    justify-content: space-evenly;
+
+    &--partOne {
+      width: 638px;
+      background-color: antiquewhite;
+      height: 3000px;
+
+      @include respond(phone) {
+        width: 100%;
+      }
+    }
+
+    &--partTwo {
+      width: 319px;
+      height: 548.5px;
+      background-color: rebeccapurple;
+
+      @include respond(page-home) {
+        display: none;
+      }
+    }
+  }
+}

@@ -48,7 +48,6 @@ function IconList(props) {
     tooltip,
   } = props;
   const weninfo = useSelector((state) => state.weninfo);
-  //console.log('IconList '+weninfo.screenSize);
   const [scope, animate] = useAnimate();
 
   const animateRemoveHoldLi = (liId, svgId, selectedSvgId) => {
@@ -158,17 +157,12 @@ function IconList(props) {
     if (weninfo.screenSize > weninfo.minOuterNav) {
       animateShowHideText(false);
       animateBottomNav(false);
-      console.log('First IconList-1');
-      //weninfo.minOuterNav >= window.innerWidth && window.innerWidth > weninfo.minBottomNav
     } else if (weninfo.screenSize <= weninfo.minOuterNav && weninfo.screenSize > weninfo.minBottomNav ) {
       animateBottomNav(false);
       animateShowHideText(true);
-      console.log('Second IconList-2');
     } else {
-      //animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly' });
       animateBottomNav(true);
       animateShowHideText(false);
-      console.log('Third IconList-3');
     }
   }, [weninfo.screenSize, animateShowHideText, animate, weninfo.minBottomNav, weninfo.minOuterNav, animateBottomNav]);
 
