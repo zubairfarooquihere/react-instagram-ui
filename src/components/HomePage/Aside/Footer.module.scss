@@ -1,0 +1,33 @@
+.footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  //background-color: darkblue;
+  margin-top: 33px;
+  color: #cccccc;
+  width: 100%;
+  height: 15%;
+
+  &__firstPart {
+    font-size: 12.5px;
+    overflow-wrap: break-word;
+    padding: 5px;
+
+    a {
+      text-decoration: none;
+      color: #cccccc;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+
+    span {
+      margin: 0 5px;
+    }
+  }
+
+  &__secondPart {
+    font-size: 13px;
+  }
+}

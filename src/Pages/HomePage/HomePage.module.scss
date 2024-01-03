@@ -28,7 +28,6 @@
     &--partTwo {
       width: 319px;
       height: 548.5px;
-      background-color: rebeccapurple;
 
       @include respond(page-home) {
         display: none;

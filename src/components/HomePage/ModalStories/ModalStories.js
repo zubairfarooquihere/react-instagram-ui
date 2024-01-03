@@ -182,7 +182,7 @@ function ModalStories(props) {
       return (
         <div className={classes.story__img}>
           <Stories
-            loop={con}
+            loop={false}
             stories={stories}
             width={"100%"}
             height={"100%"}
