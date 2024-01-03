@@ -381,16 +381,28 @@ export const create = (
 
 export const profile = (
   <svg width="24" height="24.5">
-  <circle cx="12" cy="12.5" r="11"
-  stroke="black" strokeWidth="1.5" fill="white" />
-</svg>
+    <circle
+      cx="12"
+      cy="12.5"
+      r="11"
+      stroke="black"
+      strokeWidth="1.5"
+      fill="white"
+    />
+  </svg>
 );
 
 export const profileSelected = (
   <svg width="24" height="24.5">
-  <circle cx="12" cy="12.5" r="11"
-  stroke="black" strokeWidth="1.75" fill="white" />
-</svg>
+    <circle
+      cx="12"
+      cy="12.5"
+      r="11"
+      stroke="black"
+      strokeWidth="1.75"
+      fill="white"
+    />
+  </svg>
 );
 
 export const more = (
@@ -455,3 +467,35 @@ export const moreSelect = (
   </svg>
 );
 
+export const closeModal = (
+<svg
+  aria-label="Close"
+  className="x1lliihq x1n2onr6 x9bdzbf"
+  fill="currentColor"
+  height="24"
+  role="img"
+  viewBox="0 0 24 24"
+  width="24"
+>
+  <title>Close</title>
+  <polyline
+    fill="none"
+    points="20.643 3.357 12 12 3.353 20.647"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="3"
+  ></polyline>
+  <line
+    fill="none"
+    stroke="currentColor"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    strokeWidth="3"
+    x1="20.649"
+    x2="3.354"
+    y1="20.649"
+    y2="3.354"
+  ></line>
+</svg>
+);

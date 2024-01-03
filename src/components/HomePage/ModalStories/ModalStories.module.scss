@@ -8,9 +8,26 @@
   height: 100vh;
   z-index: 175;
   overflow: hidden;
-  background-color: rgba(black, 0.23);
+  background-color: rgba(black, 1);
   //background-color: whitesmoke;
 }
+
+.logo {
+  position: absolute;
+  top: 5%;
+  left: 3%;
+  color: white;
+  //transform: translate(-50%, -50%);
+}
+
+.close {
+  cursor: pointer;
+  position: absolute;
+  right: 3%;
+  top: 5%;
+  color: white;
+  //transform: translate(-50%, -50%);
+} 
 
 .story3 {
   display: none;
@@ -20,14 +37,8 @@
   //height: 681px;
   height: 89%;
   width: 384px;
-  background-color: chartreuse;
+  //background-color: chartreuse;
   transform: translate(-50%, -50%);
-
-  @include respond(tab-land) {
-    // width < 1200?
-    width: 300px;
-    height: 75%;
-  }
 }
 
 .story2 {
@@ -38,20 +49,7 @@
   //height: 273.44px;
   height: 40%;
   width: 154.15px;
-  background-color: rebeccapurple;
   transform: translate(-50%, -50%);
-
-  @include respond(story-mode) {
-    // width < 1156?
-    left: 0%;
-    background-color: red;
-  }
-
-  @include respond(tab-port) {
-    // width < 1156?
-    left: -30px;
-    background-color: pink;
-  }
 }
 
 .story1 {
@@ -61,18 +59,8 @@
   position: absolute;
   height: 40%;
   width: 154.15px;
-  background-color: cyan;
   transform: translate(-50%, -50%);
 
-  @include respond(story-mode) {
-    display: none;
-    left: 0%;
-  }
-
-  @include respond(tab-port) {
-    // width < 1156?
-    left: -30px;
-  }
 }
 
 .story4 {
@@ -82,18 +70,7 @@
   position: absolute;
   height: 40%;
   width: 154.15px;
-  background-color: red;
   transform: translate(-50%, -50%);
-
-  @include respond(story-mode) {
-    display: none;
-    left: 0%;
-  }
-
-  @include respond(tab-port) {
-    // width < 1156?
-    left: -30px;
-  }
 }
 
 .story5 {
@@ -103,18 +80,8 @@
   position: absolute;
   height: 40%;
   width: 154.15px;
-  background-color: chocolate;
   transform: translate(-50%, -50%);
 
-  @include respond(story-mode) {
-    display: none;
-    left: 0%;
-  }
-
-  @include respond(tab-port) {
-    // width < 1156?
-    left: -30px;
-  }
 }
 
 .story6 {
@@ -124,21 +91,11 @@
   position: absolute;
   height: 40%;
   width: 154.15px;
-  background-color: cornflowerblue;
   transform: translate(-50%, -50%);
-
-  @include respond(story-mode) {
-    display: none;
-    left: 0%;
-  }
-
-  @include respond(tab-port) {
-    // width < 1156?
-    left: -30px;
-  }
 }
 
 .st {
+  cursor: pointer;
   overflow: hidden;
   border-radius: 5px;
 }
@@ -152,5 +109,47 @@
     width: 100%;
     height: 100%;
 
+  }
+}
+
+.btn {
+  cursor: pointer;
+  position: absolute;
+  background-color: #636363;
+  border-radius: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  transform: translate(-50%, -50%);
+  z-index: 20;
+  transition: all .2s;
+  &:hover {
+    background-color: white;
+  }
+}
+
+.btnR {
+  top: 50%;
+  left: 35.5%;
+  
+  @include respond(tab-land) {
+    left: 27%;
+  }
+  @include respond(tab-port) {
+    left: 4.5%;
+  }
+}
+
+.btnL {
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%) rotate(180deg);
+
+  @include respond(tab-land) {
+    left: 72%;
+  }
+  @include respond(tab-port) {
+    left: 95.5%;
   }
 }
