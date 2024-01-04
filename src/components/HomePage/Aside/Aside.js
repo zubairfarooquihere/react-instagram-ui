@@ -19,8 +19,9 @@ function Aside() {
       <UserInfoBox
         infoMain={obj.name}
         infoSub={obj.info}
-        button={"Switch"}
+        button={"Follow"}
         img={index+1}
+        temp={names[4]}
       />
     );
   })

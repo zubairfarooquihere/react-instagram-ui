@@ -2,10 +2,10 @@
   display: flex;
   width: 100%;
 }
+
 .secondPart {
-  //display: flex;
-  //align-items: center;
   padding-top: 13px;
+
   &__btn {
     cursor: pointer;
     background-color: transparent;
@@ -18,7 +18,9 @@
     }
   }
 }
+
 .userInfo {
+  position: relative;
   height: 45px;
   width: 100%;
   //background-color: rgb(206, 232, 255);
@@ -68,4 +70,15 @@
       color: #a1a1a1;
     }
   }
+}
+
+.dialog {
+  position: absolute;
+  z-index: 10;
+  left: -25%;
+  top: 40px;
+  height: 319px;
+  width: 370px;
+  border: 1px solid black;
+  border-radius: 7px;
 }
