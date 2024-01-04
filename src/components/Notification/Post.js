@@ -24,11 +24,6 @@ function Post(props) {
         fontWeight: 599,
       }, {duration: .1});
     }, 1000);
-    // await animate(`.${classes["post__button--btn"]}`, {
-    //   color: "black",
-    //   backgroundColor: "red",
-    // });
-    // setBtnText("Following");
   };
 
   return (

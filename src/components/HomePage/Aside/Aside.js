@@ -21,17 +21,17 @@ function Aside() {
         infoSub={obj.info}
         button={"Follow"}
         img={index+1}
-        temp={names[4]}
       />
     );
   })
   return (
-    <div className={classes.Aside}>
+    <div data-theme={false ? "dark" : "light"} className={classes.Aside}>
       <UserInfoBox
         infoMain={"Classic._.Here"}
         infoSub={"Classic Here"}
         button={"Switch"}
         img={500}
+        admin={true}
       />
       <div className={classes.Aside__suggest}>
         <p className={classes["Aside__suggest--p"]}>Suggested for you</p>

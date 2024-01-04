@@ -1,7 +1,9 @@
 import React from "react";
 import classes from "./Dialog.module.scss";
 
+import { Follow } from "../../../../ui/svg/HomePage";
 function Dialog(props) {
+  const { infoMain, img, following } = props;
   let svg = (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -26,46 +28,74 @@ function Dialog(props) {
       />
     </svg>
   );
+
+  const privateProfile = (
+    <main className={classes.main}>
+      <div className={classes.main}>
+        <span className={classes.main__svg}>{svg}</span>
+        <span className={classes.circle}></span>
+      </div>
+      <h3>The account is private</h3>
+      <p>Follow this account to see their photos and videos.</p>
+    </main>
+  );
+
+  const publicProfile = (
+    <main className={classes.publicMain}>
+      <span className={classes.publicMain__img}>
+        <img src={`https://picsum.photos/450/${500 + img}`} alt="" />
+      </span>
+      <span className={classes.publicMain__img}>
+        <img src={`https://picsum.photos/460/${500 + img}`} alt="" />
+      </span>
+      <span className={classes.publicMain__img}>
+        <img src={`https://picsum.photos/470/${500 + img}`} alt="" />
+      </span>
+    </main>
+  );
   return (
     <>
       <div className={classes.dialog}>
         <header className={classes.header}>
           <span className={classes.header__img}>
-            <img src={`https://picsum.photos/400/400`} alt="" />
+            <img src={`https://picsum.photos/400/${500 + img}`} alt="" />
           </span>
           <main className={classes.header__info}>
-            <span className={classes["header__info--main"]}>Alice</span>
-            <span className={classes["header__info--sub"]}>Alice</span>
+            <span className={classes["header__info--main"]}>{infoMain}</span>
+            <span className={classes["header__info--sub"]}>{infoMain}</span>
           </main>
         </header>
         <div className={classes.posts}>
           <div className={classes.posts__post}>
-            <span className={classes["posts__post--top"]}>0</span>
+            <span className={classes["posts__post--top"]}>
+              {(img + 2) * img}
+            </span>
             <span className={classes["posts__post--bottom"]}>posts</span>
           </div>
           <div className={classes.posts__post}>
-            <span className={classes["posts__post--top"]}>75</span>
+            <span className={classes["posts__post--top"]}>
+              {(img + 1) * img * 31}
+            </span>
             <span className={classes["posts__post--bottom"]}>followers</span>
           </div>
           <div className={classes.posts__post}>
-            <span className={classes["posts__post--top"]}>134</span>
+            <span className={classes["posts__post--top"]}>
+              {(img + 1) * img * 3}
+            </span>
             <span className={classes["posts__post--bottom"]}>following</span>
           </div>
         </div>
-        <div className={classes.linebreakLight} />
-        <main className={classes.main}>
-          <div className={classes.main}>
-            <span className={classes.main__svg}>{svg}</span>
-            <span className={classes.circle}></span>
-          </div>
-          <h3>The account is private</h3>
-          <p>Follow this account to see their photos and videos.</p>
-        </main>
-        <div className={classes.linebreakLight} />
+        {!following && <div className={classes.linebreakLight} />}
+        {!following && privateProfile}
+        {following && publicProfile}
+        {!following && <div className={classes.linebreakLight} />}
         <div className={classes.btndiv}>
-        <button >
-            Follow
-        </button>
+          {!following && <button className={classes.btndiv__follow}>
+            <span className={classes['btndiv__follow--svg']}>{Follow}</span>
+            <span className={classes['btndiv__follow--text']}>Follow</span>
+          </button>}
+         {following && <button className={classes.btndiv__message}>Message</button>}
+         {following && <button className={classes.btndiv__following}>Following</button>}
         </div>
       </div>
     </>

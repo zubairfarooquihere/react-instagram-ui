@@ -16,7 +16,7 @@ import {
   notificationSelect,
   create,
   profile,
-  profileSelected
+  profileSelected,
 } from "../../ui/svg/Nav";
 import Logo from "../../ui/Logoa.svg";
 
@@ -81,7 +81,7 @@ function IconList(props) {
       } else {
         animate("ul li ." + classes.list__text, {
           display: window.innerWidth <= weninfo.minOuterNav ? "none" : "block",
-        }, );
+        });
       }
     },
     [animateInnerNav, animate, weninfo.minOuterNav]
@@ -145,26 +145,51 @@ function IconList(props) {
     );
   });
 
-  const animateBottomNav = useCallback((open) => {
-    if (open) {
-      animate("#ulNavID", { flexDirection: 'row', paddingTop: 0, justifyContent: 'space-evenly', left: 0, width: '100%' });
-    } else {
-      animate("#ulNavID", { flexDirection: '', paddingTop: '', justifyContent: '', left: '', width: '' });
-    }
-  },[animate]);
+  const animateBottomNav = useCallback(
+    (open) => {
+      if (open) {
+        animate("#ulNavID", {
+          flexDirection: "row",
+          paddingTop: 0,
+          justifyContent: "space-evenly",
+          left: 0,
+          width: "100%",
+        });
+      } else {
+        animate("#ulNavID", {
+          flexDirection: "",
+          paddingTop: "",
+          justifyContent: "",
+          left: "",
+          width: "",
+        });
+      }
+    },
+    [animate]
+  );
 
   useEffect(() => {
     if (weninfo.screenSize > weninfo.minOuterNav) {
       animateShowHideText(false);
       animateBottomNav(false);
-    } else if (weninfo.screenSize <= weninfo.minOuterNav && weninfo.screenSize > weninfo.minBottomNav ) {
+    } else if (
+      weninfo.screenSize <= weninfo.minOuterNav &&
+      weninfo.screenSize > weninfo.minBottomNav
+    ) {
       animateBottomNav(false);
       animateShowHideText(true);
     } else {
       animateBottomNav(true);
       animateShowHideText(false);
     }
-  }, [weninfo.screenSize, animateShowHideText, animate, weninfo.minBottomNav, weninfo.minOuterNav, animateBottomNav]);
+  }, [
+    weninfo.screenSize,
+    animateShowHideText,
+    animate,
+    weninfo.minBottomNav,
+    weninfo.minOuterNav,
+    animateBottomNav,
+  ]);
 
   return (
     <>
@@ -173,8 +198,8 @@ function IconList(props) {
         <ul id="ulNavID" className={classes.list} ref={scope}>
           {list}
           <li
-          style={{display:'none'}}
-          id="profileLi"
+            style={{ display: "none" }}
+            id="profileLi"
             data-tooltip-id="my-tooltip"
             data-tooltip-content="Profile"
             className={classes.list__item}

@@ -1,7 +1,10 @@
+@import "../../../index.scss";
+
 .Aside {
   height: 100%;
   width: 100%;
-  //background-color: whitesmoke;
+  background-color: var(--white-color);
+  color: var(--black-color);
   padding: 0 7px;
   padding-top: 37px;
 
@@ -24,7 +27,7 @@
       background-color: transparent;
       border: none;
       font-size: 12.25px;
-      color: #373737;
+      color: var(--greyLight-color);
 
       &:hover {
         color: #7f7f7f;

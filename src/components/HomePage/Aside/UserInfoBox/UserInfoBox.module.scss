@@ -5,13 +5,14 @@
 
 .secondPart {
   padding-top: 13px;
+  color: #22a6ff;
 
   &__btn {
     cursor: pointer;
     background-color: transparent;
     border: none;
     font-size: 12.25px;
-    color: #22a6ff;
+    color: inherit;
 
     &:hover {
       color: #114c72;
@@ -23,8 +24,6 @@
   position: relative;
   height: 45px;
   width: 100%;
-  //background-color: rgb(206, 232, 255);
-  //padding: 0 7px;
 
   display: flex;
   justify-content: space-between;
@@ -74,11 +73,12 @@
 
 .dialog {
   position: absolute;
-  z-index: 10;
+  z-index: 500;
   left: -25%;
   top: 40px;
   height: 319px;
   width: 370px;
-  border: 1px solid black;
+  border: 1px solid white;
   border-radius: 7px;
+  box-shadow: 2rem 2rem 5rem rgba(0,0,0,.1);
 }
