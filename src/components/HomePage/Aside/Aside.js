@@ -17,6 +17,7 @@ function Aside() {
   const context = data.map((obj, index)=>{
     return (
       <UserInfoBox
+        key={index}
         infoMain={obj.name}
         infoSub={obj.info}
         button={"Follow"}
@@ -27,6 +28,7 @@ function Aside() {
   return (
     <div data-theme={false ? "dark" : "light"} className={classes.Aside}>
       <UserInfoBox
+        key={'admin'}
         infoMain={"Classic._.Here"}
         infoSub={"Classic Here"}
         button={"Switch"}
