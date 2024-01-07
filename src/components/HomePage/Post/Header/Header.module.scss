@@ -1,6 +1,5 @@
 .header {
   height: 44px;
-  background-color: whitesmoke;
   display: grid;
   grid-template-rows: 1fr;
   grid-template-columns: 1fr 6fr 1fr;
@@ -49,7 +48,7 @@
 
     &--location {
       cursor: pointer;
-      font-size: 10.5px;
+      font-size: 11px;
     }
   }
 

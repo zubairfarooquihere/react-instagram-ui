@@ -1,0 +1,29 @@
+.AtBtn {
+  height: 40px;
+  width: 100%;
+  //background-color: sandybrown;
+  display: grid;
+  padding: 6px;
+  padding-left: 0;
+  grid-template-columns: 0.5fr 0.5fr 4fr 0.5fr;
+
+  &__btn {
+    svg {
+      cursor: pointer;
+    }
+  }
+
+  &__Like {
+    //background-color: saddlebrown;
+  }
+
+  &__Comment {
+  }
+
+  &__Share {
+  }
+
+  &__Save {
+    padding-left: 20px;
+  }
+}
