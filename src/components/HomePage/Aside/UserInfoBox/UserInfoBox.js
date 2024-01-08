@@ -66,9 +66,9 @@ function UserInfoBox(props) {
             <span className={classes["userInfo__info--main"]}>{infoMain}</span>
             <span className={classes["userInfo__info--sub"]}>{infoSub}</span>
             {dialog && admin !== true && (
-              <dialog open className={classes.dialog}>
+              // <dialog open className={classes.dialog}>
                 <Dialog infoMain={infoMain} img={img} following={btnText === 'Following' ? true : false} />
-              </dialog>
+              // </dialog>
             )}
           </main>
         </div>

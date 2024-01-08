@@ -10,11 +10,15 @@
   &__btn {
     svg {
       cursor: pointer;
+      &:hover {
+        color: rgb(160, 147, 147);
+      }
     }
   }
+  
 
   &__Like {
-    //background-color: saddlebrown;
+      
   }
 
   &__Comment {

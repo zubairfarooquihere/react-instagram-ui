@@ -7,10 +7,12 @@ import ActionButtons from "./ActionButtons/ActionButtons";
 import Caption from "./Caption/Caption";
 import ViewComments from "./ViewComments/ViewComments";
 import AddComment from "./AddComment/AddComment";
+import CommentModal from "./ActionButtons/CommentModal/CommentModal";
 
 function Post() {
   return (
     <div data-theme={false ? "dark" : "light"} className={classes.Post}>
+      {false && <CommentModal />}
       <Header />
       <Picture />
       <ActionButtons />

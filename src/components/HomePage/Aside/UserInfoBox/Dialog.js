@@ -55,49 +55,57 @@ function Dialog(props) {
   );
   return (
     <>
-      <div className={classes.dialog}>
-        <header className={classes.header}>
-          <span className={classes.header__img}>
-            <img src={`https://picsum.photos/400/${500 + img}`} alt="" />
-          </span>
-          <main className={classes.header__info}>
-            <span className={classes["header__info--main"]}>{infoMain}</span>
-            <span className={classes["header__info--sub"]}>{infoMain}</span>
-          </main>
-        </header>
-        <div className={classes.posts}>
-          <div className={classes.posts__post}>
-            <span className={classes["posts__post--top"]}>
-              {(img + 2) * img}
+      <dialog open className={classes.dialogc}>
+        <div className={classes.dialog}>
+          <header className={classes.header}>
+            <span className={classes.header__img}>
+              <img src={`https://picsum.photos/400/${500 + img}`} alt="" />
             </span>
-            <span className={classes["posts__post--bottom"]}>posts</span>
+            <main className={classes.header__info}>
+              <span className={classes["header__info--main"]}>{infoMain}</span>
+              <span className={classes["header__info--sub"]}>{infoMain}</span>
+            </main>
+          </header>
+          <div className={classes.posts}>
+            <div className={classes.posts__post}>
+              <span className={classes["posts__post--top"]}>
+                {(img + 2) * img}
+              </span>
+              <span className={classes["posts__post--bottom"]}>posts</span>
+            </div>
+            <div className={classes.posts__post}>
+              <span className={classes["posts__post--top"]}>
+                {(img + 1) * img * 31}
+              </span>
+              <span className={classes["posts__post--bottom"]}>followers</span>
+            </div>
+            <div className={classes.posts__post}>
+              <span className={classes["posts__post--top"]}>
+                {(img + 1) * img * 3}
+              </span>
+              <span className={classes["posts__post--bottom"]}>following</span>
+            </div>
           </div>
-          <div className={classes.posts__post}>
-            <span className={classes["posts__post--top"]}>
-              {(img + 1) * img * 31}
-            </span>
-            <span className={classes["posts__post--bottom"]}>followers</span>
-          </div>
-          <div className={classes.posts__post}>
-            <span className={classes["posts__post--top"]}>
-              {(img + 1) * img * 3}
-            </span>
-            <span className={classes["posts__post--bottom"]}>following</span>
+          {!following && <div className={classes.linebreakLight} />}
+          {!following && privateProfile}
+          {following && publicProfile}
+          {!following && <div className={classes.linebreakLight} />}
+          <div className={classes.btndiv}>
+            {!following && (
+              <button className={classes.btndiv__follow}>
+                <span className={classes["btndiv__follow--svg"]}>{Follow}</span>
+                <span className={classes["btndiv__follow--text"]}>Follow</span>
+              </button>
+            )}
+            {following && (
+              <button className={classes.btndiv__message}>Message</button>
+            )}
+            {following && (
+              <button className={classes.btndiv__following}>Following</button>
+            )}
           </div>
         </div>
-        {!following && <div className={classes.linebreakLight} />}
-        {!following && privateProfile}
-        {following && publicProfile}
-        {!following && <div className={classes.linebreakLight} />}
-        <div className={classes.btndiv}>
-          {!following && <button className={classes.btndiv__follow}>
-            <span className={classes['btndiv__follow--svg']}>{Follow}</span>
-            <span className={classes['btndiv__follow--text']}>Follow</span>
-          </button>}
-         {following && <button className={classes.btndiv__message}>Message</button>}
-         {following && <button className={classes.btndiv__following}>Following</button>}
-        </div>
-      </div>
+      </dialog>
     </>
   );
 }

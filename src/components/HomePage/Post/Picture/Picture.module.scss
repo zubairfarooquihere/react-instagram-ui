@@ -1,9 +1,16 @@
 .Picture {
+  position: relative;
     width: 100%;
     margin: 0 auto;
     height: 569px;
     overflow: hidden;
 
+    &__svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
   
     img {
       width: 100%;
