@@ -2,14 +2,15 @@ import React, { useState } from "react";
 
 import classes from "./Caption.module.scss";
 
-function Caption() {
+function Caption(props) {
+  const {name, caption} = props;
   const [more, showMore] = useState(false);
   return (
     <>
       <div className={classes.caption}>
-        <span className={classes.caption__username}>Isabella </span>
+        <span className={classes.caption__username}>{name} </span>
         <span className={classes.caption__text}>
-          List of 18+ HTML Input Types
+          {caption}
         </span>
       </div>
       {!more && (

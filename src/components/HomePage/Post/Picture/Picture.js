@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import classes from "./Picture.module.scss";
 
-function Picture() {
+function Picture(props) {
+  const { img } = props;
   const [heart, showHeart] = useState(false);
   const gradientId = "heartGradient";
   const svg = (
@@ -59,7 +60,7 @@ function Picture() {
           </motion.span>
         )}
       </AnimatePresence>
-      <img src={`https://picsum.photos/500/${512}`} alt="" />
+      <img src={`https://picsum.photos/500/${img}`} alt="" />
     </div>
   );
 }

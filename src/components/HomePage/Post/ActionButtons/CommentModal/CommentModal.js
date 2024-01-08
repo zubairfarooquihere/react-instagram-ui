@@ -5,19 +5,20 @@ import Header from "../../Header/Header";
 import CommentSection from "./CommentSection";
 import ActionButtons from "../ActionButtons";
 
-function CommentModal() {
+function CommentModal(props) {
+  const {showCmtModal, PostObj} = props;
   return (
     <>
-      <Modal onClose={() => {}} />
+      <Modal onClose={() => {showCmtModal(false)}} />
       <div className={classes.cmtModal}>
         <div className={classes.cmtModal__image}>
-          <img src={`https://picsum.photos/500/${512}`} alt="" />
+          <img src={`https://picsum.photos/500/${PostObj.img}`} alt="" />
         </div>
         <div className={classes.cmtModal__comments}>
-          <Header />
+          <Header name={PostObj.name} profileImg={PostObj.profileImg} time={PostObj.time} place={PostObj.place} />
           <div className={classes.linebreakLight} />
           <div className={classes.cmtModal__section}>
-            <CommentSection />
+            <CommentSection commentsName={PostObj.commentsName} comments={PostObj.comments} />
             <div className={classes.linebreakLight} />
             <div className={classes["cmtModal__section--info"]}>
               <ActionButtons />

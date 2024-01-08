@@ -4,7 +4,7 @@ import Dialog from "../../../Aside/UserInfoBox/Dialog";
 import { More, Like } from "../../../../../ui/svg/HomePage";
 
 function Comment(props) {
-  const { classes } = props;
+  const { classes, comment, img, name } = props;
 
   const [timer, setTimer] = useState(null);
   const [dialog, setDialog] = useState(false);
@@ -30,7 +30,7 @@ function Comment(props) {
   return (
     <div className={classes.header}>
       <span className={classes.header__profile}>
-        <img src={`https://picsum.photos/500/111`} alt="" />
+        <img src={`https://picsum.photos/500/${111+img}`} alt="" />
         <span id={circleId} className={classes.circle}></span>
       </span>
       <div
@@ -38,10 +38,10 @@ function Comment(props) {
         onMouseLeave={handleMouseLeave}
         className={classes.header__info}
       >
-        {dialog && <Dialog infoMain={"Isabella"} img={3} following={true} />}
+        {dialog && <Dialog infoMain={name} img={3} following={true} />}
         <span className={classes["header__info--name"]}>
-          Isabella{" "}
-          <span className={classes["header__info--comment"]}>Nice Picture</span>
+          {name}{" "}
+          <span className={classes["header__info--comment"]}>{comment}</span>
         </span>
         <span className={classes["header__info--details"]}>
           <span className={classes["header__info--details--time"]}>15m</span>

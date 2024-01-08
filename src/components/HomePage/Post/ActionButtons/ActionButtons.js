@@ -9,7 +9,8 @@ import {
   Save,
   LikeActive,
 } from "../../../../ui/svg/HomePage";
-function ActionButtons() {
+function ActionButtons(props) {
+  const { showCmtModal } = props;
   const [like, setLike] = useState(false);
   const likeFunc = () => {
     setLike(!like);
@@ -39,7 +40,7 @@ function ActionButtons() {
             {LikeActive}
           </motion.span>
         )}
-        <span className={`${classes.AtBtn__Comment} ${classes.AtBtn__btn}`}>
+        <span onClick={()=>{showCmtModal(true)}} className={`${classes.AtBtn__Comment} ${classes.AtBtn__btn}`}>
           {Comment}
         </span>
         <span className={`${classes.AtBtn__Share} ${classes.AtBtn__btn}`}>

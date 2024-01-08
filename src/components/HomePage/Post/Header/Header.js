@@ -5,7 +5,8 @@ import { More } from "../../../../ui/svg/HomePage";
 import Popup from "./Popup";
 import Dialog from "../../Aside/UserInfoBox/Dialog";
 
-function Header() {
+function Header(props) {
+  const {name, profileImg, time, place} = props;
   const [popup, showPopup] = useState(false);
   const [timer, setTimer] = useState(null);
   const [dialog, setDialog] = useState(false);
@@ -26,7 +27,7 @@ function Header() {
       },
     },
   ];
-  let circleId = "circleId";
+  let circleId = "circleId"+profileImg;
 
   const handleHoverAction = () => {
     setDialog(true);
@@ -52,7 +53,7 @@ function Header() {
       </AnimatePresence>
       <div className={classes.header}>
         <span className={classes.header__profile}>
-          <img src={`https://picsum.photos/500/111`} alt="" />
+          <img src={`https://picsum.photos/500/${profileImg}`} alt="" />
           <span id={circleId} className={classes.circle}></span>
         </span>
         <div
@@ -60,13 +61,13 @@ function Header() {
           onMouseLeave={handleMouseLeave}
           className={classes.header__info}
         >
-          {dialog && <Dialog infoMain={"Isabella"} img={3} following={true} />}
+          {dialog && <Dialog infoMain={name} img={profileImg-108} following={true} />}
           <span className={classes["header__info--name"]}>
-            Isabella{" "}
-            <span className={classes["header__info--time"]}>• 15m</span>
+            {name}{" "}
+            <span className={classes["header__info--time"]}>• {time}</span>
           </span>
           <span className={classes["header__info--location"]}>
-            Bhopal, Madhya Pradesh
+            {place}
           </span>
         </div>
         <span

@@ -110,12 +110,12 @@ function Nav() {
 
   const animateBottomNav = useCallback((open, option) => {
     if (open) {
-      animate("#navOuter", { position: 'fixed', zIndex: 500, bottom: 0, height: 47, width: '100%', display: 'flex', justifyContent: 'space-evenly' })
+      animate("#navOuter", { position: 'fixed', zIndex: 50, bottom: 0, height: 47, width: '100%', display: 'flex', justifyContent: 'space-evenly' })
       animate("#navInner header", { display: 'none' });
       animate("#navInner footer", { display: 'none' });
       animate("#navInner", { borderTop: '1px solid grey',position: 'absolute', display: 'flex', flexDirection: 'row', width: '100%' });
     } else {
-      animate("#navOuter", { position: '', bottom: '', height: '', display: '', justifyContent: ''})
+      animate("#navOuter", { position: '',zIndex: 50, bottom: '', height: '', display: '', justifyContent: ''})
       animate("#navInner footer", { display: '' });
       animate("#navInner header", { display: '' });
       animate("#navInner", { position: '', borderTop: '', display: '', flexDirection: '', width: option === 'second' ? 70 : '' });
