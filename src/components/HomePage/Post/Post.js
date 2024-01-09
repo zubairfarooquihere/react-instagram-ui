@@ -13,7 +13,7 @@ function Post(props) {
   const {PostObj} = props;
   const [CmtModal, showCmtModal] = useState(false);
   return (
-    <div data-theme={false ? "dark" : "light"} className={classes.Post}>
+    <div className={classes.Post}>
       {CmtModal && <CommentModal PostObj={PostObj} img={PostObj.img} showCmtModal={showCmtModal} />}
       <Header name={PostObj.name} profileImg={PostObj.profileImg} time={PostObj.time} place={PostObj.place} />
       <Picture img={PostObj.img} />

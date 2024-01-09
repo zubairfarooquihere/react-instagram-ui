@@ -2,8 +2,9 @@
 .Post {
   min-height: 693px;
   width: 470px;
-  background-color: white;
+  background-color: var(--white-color);
   margin: 0 auto;
+  color: var(--black-color);
   //margin-top: 100px;
 
   &__likes {

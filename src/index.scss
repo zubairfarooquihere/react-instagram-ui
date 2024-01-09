@@ -68,6 +68,8 @@ html {
   --dropdownhover-color: #f2f2f2;
   --linebreak-color: #f4f4f4;
   --greyLight-color: #373737;
+  --popupBorder-color: rgb(222, 220, 220);
+  --navInner-color: #dfdfdf;
 }
 
 [data-theme="dark"] {
@@ -78,6 +80,8 @@ html {
   --dropdownhover-color: #424242;
   --linebreak-color: #343434;
   --greyLight-color: white;
+  --popupBorder-color: #5c5c5c;
+  --navInner-color: #212121;
 }
 
 body {

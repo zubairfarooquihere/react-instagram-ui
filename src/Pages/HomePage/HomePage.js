@@ -13,21 +13,11 @@ import {
   generateRandomNumbers,
   formatTime
 } from "../../Data/Name/Name";
+import { useSelector } from "react-redux";
 const callData = 10;
 function HomePage() {
-  const [PostObjs, setPostObjs] = useState([
-    // {
-    //   name: "Isabella",
-    //   place: "Bhopal, Madhya Pradesh",
-    //   likes: 147,
-    //   caption: "List of 18+ HTML Input Types",
-    //   commentsCount: 3,
-    //   comments: ["Nice Picture", "Nice Picture", "Nice Picture"],
-    //   time: "15m",
-    //   img: 512,
-    //   profileImg: 111,
-    // },
-  ]);
+  const [PostObjs, setPostObjs] = useState([]);
+  const weninfo = useSelector((state) => state.weninfo);
 
   useEffect(() => {
     const namesArr = generateRandomNames(callData);
@@ -59,7 +49,7 @@ function HomePage() {
   }, []);
 
   return (
-    <div data-theme={false ? "dark" : "light"} className={classes.homepage}>
+    <div data-theme={weninfo.darkMode ? "dark" : "light"} className={classes.homepage}>
       <div className={classes.homepage__main}>
         <div className={classes["homepage__main--partOne"]}>
           <Stories />

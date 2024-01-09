@@ -176,7 +176,7 @@ function Nav() {
       <span ref={scope}>
         <div
           className={classes.navOutter}
-          data-theme={false ? "dark" : "light"}
+          data-theme={weninfo.darkMode ? "dark" : "light"}
           id="navOuter"
         >
           <AnimatePresence>

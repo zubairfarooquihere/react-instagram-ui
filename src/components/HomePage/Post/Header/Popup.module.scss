@@ -4,7 +4,7 @@
   left: 50%;
   //min-height: 290px;
   width: 400px;
-  background-color: white;
+  background-color: var(--linebreak-color);
   z-index: 176;
   transform: translate(-50%, -50%);
   border-radius: 15px;
@@ -27,7 +27,7 @@
       padding: 12.5px 0;
 
       &:not(:last-child) {
-        border-bottom: 0.5px solid rgb(222, 220, 220);
+        border-bottom: 0.5px solid var(--popupBorder-color);
       }
     }
   }

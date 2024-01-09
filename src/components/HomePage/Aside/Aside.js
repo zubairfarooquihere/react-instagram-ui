@@ -26,7 +26,7 @@ function Aside() {
     );
   })
   return (
-    <div data-theme={false ? "dark" : "light"} className={classes.Aside}>
+    <div className={classes.Aside}>
       <UserInfoBox
         key={'admin'}
         infoMain={"Classic._.Here"}
