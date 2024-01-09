@@ -10,19 +10,28 @@ import AddComment from "./AddComment/AddComment";
 import CommentModal from "./ActionButtons/CommentModal/CommentModal";
 
 function Post(props) {
-  const {PostObj} = props;
+  const { PostObj} = props;
   const [CmtModal, showCmtModal] = useState(false);
+  const [comments, setComments] = useState(PostObj.commentsArr);
+  //console.log(comments);
+  const newComment = (allcomments) => {
+    setComments((prev)=>{
+      return [...allcomments]
+    });
+  }
+
+
   return (
     <div className={classes.Post}>
-      {CmtModal && <CommentModal PostObj={PostObj} img={PostObj.img} showCmtModal={showCmtModal} />}
+      {CmtModal && <CommentModal PostObj={PostObj} comments={comments} img={PostObj.img} showCmtModal={showCmtModal} />}
       <Header name={PostObj.name} profileImg={PostObj.profileImg} time={PostObj.time} place={PostObj.place} />
       <Picture img={PostObj.img} />
       <div className={classes.secondPart}>
         <ActionButtons showCmtModal={showCmtModal} />
         <div className={classes.Post__likes}> {PostObj.likes} likes </div>
         <Caption name={PostObj.name} caption={PostObj.caption} />
-        <ViewComments showCmtModal={showCmtModal} commentsCount={PostObj.commentsCount} />
-        <AddComment />
+        <ViewComments showCmtModal={showCmtModal} commentsCount={comments.length} />
+        <AddComment comments={comments} newComment={newComment} />
       </div>
       <div className={classes.linebreakLight} />
     </div>

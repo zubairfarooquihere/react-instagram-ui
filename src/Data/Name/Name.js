@@ -213,3 +213,94 @@ export function formatTime(value) {
     return hours + 'h';
   }
 }
+
+export function generateRandomCommentsWithUser(number) {
+  const comments = [
+    "Nice picture!",
+    "Great shot!",
+    "Beautiful!",
+    "Amazing!",
+    "Lovely!",
+    "Well captured!",
+    "Stunning!",
+    "Awesome!",
+    "Fantastic!",
+    "Incredible!",
+    "Well done!",
+    "Brilliant!",
+    "Impressive!",
+    "Superb!",
+    "Wonderful!",
+    "Excellent!",
+    "Marvelous!",
+    "Perfect!",
+    "Outstanding!",
+    "Terrific!",
+  ];
+  const names = [
+    "Alice",
+    "Bob",
+    "Charlie",
+    "David",
+    "Emma",
+    "Frank",
+    "Grace",
+    "Henry",
+    "Isabella",
+    "Jack",
+    "Katherine",
+    "Liam",
+    "Mia",
+    "Noah",
+    "Olivia",
+    "Peter",
+    "Quinn",
+    "Rachel",
+    "Sophia",
+    "Thomas",
+    "Uma",
+    "Victor",
+    "Willow",
+    "Xavier",
+    "Yasmine",
+    "Zachary",
+  ];
+
+  const getRandomInteger = (min, max) => {
+    return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  //const randomComments = [];
+  //const usedIndexes = new Set();
+  
+  let randomComments = []; 
+  
+  for(let i = 0; i < number; i++) {
+    let commentsNumber = getRandomInteger(3, 17);
+    let singlePostComments = [];
+    for(let j = 0; j < commentsNumber; j++) {
+      let commentIndex = Math.floor(Math.random() * comments.length);
+      let NameIndex = Math.floor(Math.random() * names.length);
+      let likes = getRandomInteger(3, 30);
+      
+      let obj = {
+        name: names[NameIndex],
+        comment: comments[commentIndex],
+        likes: likes,
+      }
+      singlePostComments.push(obj);
+    }
+    randomComments.push(singlePostComments);
+  }
+
+  // while (randomComments.length < number) {
+  //   const randomIndex = Math.floor(Math.random() * comments.length);
+
+  //   if (!usedIndexes.has(randomIndex)) {
+  //     randomComments.push(comments[randomIndex]);
+  //     usedIndexes.add(randomIndex);
+  //   }
+  // }
+
+  return randomComments;
+}

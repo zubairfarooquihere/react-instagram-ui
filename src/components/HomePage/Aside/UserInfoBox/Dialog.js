@@ -75,13 +75,13 @@ function Dialog(props) {
             </div>
             <div className={classes.posts__post}>
               <span className={classes["posts__post--top"]}>
-                {(img + 1) * img * 31}
+                {(img + 1) * 3}
               </span>
               <span className={classes["posts__post--bottom"]}>followers</span>
             </div>
             <div className={classes.posts__post}>
               <span className={classes["posts__post--top"]}>
-                {(img + 1) * img * 3}
+                {(img + 1) * 2}
               </span>
               <span className={classes["posts__post--bottom"]}>following</span>
             </div>

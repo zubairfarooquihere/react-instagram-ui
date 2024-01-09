@@ -4,7 +4,7 @@ import Dialog from "../../../Aside/UserInfoBox/Dialog";
 import { More, Like } from "../../../../../ui/svg/HomePage";
 
 function Comment(props) {
-  const { classes, comment, img, name } = props;
+  const { classes, comment, img, name, likes } = props;
 
   const [timer, setTimer] = useState(null);
   const [dialog, setDialog] = useState(false);
@@ -46,7 +46,7 @@ function Comment(props) {
         <span className={classes["header__info--details"]}>
           <span className={classes["header__info--details--time"]}>15m</span>
           <span className={classes["header__info--details--like"]}>
-            11 likes
+            {likes} likes
           </span>
           <span className={classes["header__info--details--reply"]}>Reply</span>
           <span className={classes["header__info--details--more"]}>{More}</span>

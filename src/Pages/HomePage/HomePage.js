@@ -5,25 +5,25 @@ import classes from "./HomePage.module.scss";
 import Stories from "../../components/HomePage/Stories/Stories";
 import Post from "../../components/HomePage/Post/Post";
 import Aside from "../../components/HomePage/Aside/Aside";
+import { useSelector } from "react-redux";
 import {
   generateRandomNames,
   generateRandomPlaces,
   generateRandomMotivationalQuotes,
-  generateRandomComments,
   generateRandomNumbers,
-  formatTime
+  formatTime,
+  generateRandomCommentsWithUser,
 } from "../../Data/Name/Name";
-import { useSelector } from "react-redux";
 const callData = 10;
 function HomePage() {
-  const [PostObjs, setPostObjs] = useState([]);
   const weninfo = useSelector((state) => state.weninfo);
+  const [PostObjs, setPostObjs] = useState([]);
 
   useEffect(() => {
     const namesArr = generateRandomNames(callData);
     const placesArr = generateRandomPlaces(callData);
     const captionsArr = generateRandomMotivationalQuotes(callData);
-    const commentsArr = generateRandomComments(callData);
+    const commentsArr = generateRandomCommentsWithUser(callData);
     const likesArr = generateRandomNumbers(callData);
     let arr = [];
 
@@ -33,9 +33,7 @@ function HomePage() {
         name: namesArr[i],
         place: placesArr[i],
         caption: captionsArr[i],
-        commentsCount: commentsArr.length,
-        comments: commentsArr,
-        commentsName: namesArr,
+        commentsArr: commentsArr[i],
         likes: likesArr[i],
         time: formatTime(15 * (i+1)),
         img: 512 + i,
@@ -54,7 +52,7 @@ function HomePage() {
         <div className={classes["homepage__main--partOne"]}>
           <Stories />
           {PostObjs.map((PostObj)=>{
-            return (<Post key={PostObj.id} PostObj={PostObj} />)
+            return (<Post key={PostObj.id} PostObj={PostObj} setPostObjs={setPostObjs} />)
           })}
           {/* <Post PostObj={PostObjs[0]} /> */}
         </div>

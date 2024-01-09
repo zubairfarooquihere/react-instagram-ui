@@ -6,7 +6,8 @@ import CommentSection from "./CommentSection";
 import ActionButtons from "../ActionButtons";
 
 function CommentModal(props) {
-  const {showCmtModal, PostObj} = props;
+  const {showCmtModal, PostObj, comments} = props;
+  
   return (
     <>
       <Modal onClose={() => {showCmtModal(false)}} />
@@ -18,12 +19,12 @@ function CommentModal(props) {
           <Header name={PostObj.name} profileImg={PostObj.profileImg} time={PostObj.time} place={PostObj.place} />
           <div className={classes.linebreakLight} />
           <div className={classes.cmtModal__section}>
-            <CommentSection commentsName={PostObj.commentsName} comments={PostObj.comments} />
+            <CommentSection comments={comments} />
             <div className={classes.linebreakLight} />
             <div className={classes["cmtModal__section--info"]}>
               <ActionButtons />
-              <div className={classes.likes}> 147 likes </div>
-              <div className={classes.time}>15m ago</div>
+              <div className={classes.likes}> {PostObj.likes} likes </div>
+              <div className={classes.time}>{PostObj.time} ago</div>
             </div>
             <div className={classes.linebreakLight} />
             <div className={classes.addcomment}></div>
