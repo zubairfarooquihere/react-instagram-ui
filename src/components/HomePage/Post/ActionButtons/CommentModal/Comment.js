@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 import Dialog from "../../../Aside/UserInfoBox/Dialog";
-import { More, Like } from "../../../../../ui/svg/HomePage";
+import { More, Like, LikeActive } from "../../../../../ui/svg/HomePage";
 
 function Comment(props) {
-  const { classes, comment, img, name, likes } = props;
-
+  const { classes, comment, img, name, likes, selfLike, changeObj, index } = props;
+  const [liked, setLiked] = useState(selfLike);
   const [timer, setTimer] = useState(null);
   const [dialog, setDialog] = useState(false);
 
@@ -27,6 +27,14 @@ function Comment(props) {
     clearTimeout(timer);
     setDialog(false);
   };
+
+  const LikedFunc = () => {
+    setLiked(!liked);
+    changeObj(index, !liked)
+  };
+
+  const CommentLikes = likes  + (liked ? 1 : 0);
+
   return (
     <div className={classes.header}>
       <span className={classes.header__profile}>
@@ -46,14 +54,15 @@ function Comment(props) {
         <span className={classes["header__info--details"]}>
           <span className={classes["header__info--details--time"]}>15m</span>
           <span className={classes["header__info--details--like"]}>
-            {likes} likes
+            {CommentLikes} likes
           </span>
           <span className={classes["header__info--details--reply"]}>Reply</span>
           <span className={classes["header__info--details--more"]}>{More}</span>
         </span>
       </div>
-      <span onClick={() => {}} className={classes.header__like}>
-        {Like}
+      <span onClick={LikedFunc} className={classes.header__like}>
+        {!liked && <div>{Like}</div>}
+        {liked && <div>{LikeActive}</div>}
       </span>
     </div>
   );

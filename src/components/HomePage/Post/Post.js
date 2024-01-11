@@ -1,6 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 
 import classes from "./Post.module.scss";
+import { useSelector } from "react-redux";
+
 import Header from "./Header/Header";
 import Picture from "./Picture/Picture";
 import ActionButtons from "./ActionButtons/ActionButtons";
@@ -10,28 +12,26 @@ import AddComment from "./AddComment/AddComment";
 import CommentModal from "./ActionButtons/CommentModal/CommentModal";
 
 function Post(props) {
-  const { PostObj} = props;
+  const { id } = props;
+  const PostObj = useSelector((state) => state.PostObjects.PostObjects[id]);
   const [CmtModal, showCmtModal] = useState(false);
-  const [comments, setComments] = useState(PostObj.commentsArr);
-  //console.log(comments);
-  const newComment = (allcomments) => {
-    setComments((prev)=>{
-      return [...allcomments]
-    });
-  }
-
 
   return (
     <div className={classes.Post}>
-      {CmtModal && <CommentModal PostObj={PostObj} comments={comments} img={PostObj.img} showCmtModal={showCmtModal} />}
-      <Header name={PostObj.name} profileImg={PostObj.profileImg} time={PostObj.time} place={PostObj.place} />
-      <Picture img={PostObj.img} />
+      {CmtModal && (
+        <CommentModal PostObj={PostObj} showCmtModal={showCmtModal} />
+      )}
+      <Header PostObj={PostObj} />
+      <Picture PostObj={PostObj} />
       <div className={classes.secondPart}>
-        <ActionButtons showCmtModal={showCmtModal} />
-        <div className={classes.Post__likes}> {PostObj.likes} likes </div>
-        <Caption name={PostObj.name} caption={PostObj.caption} />
-        <ViewComments showCmtModal={showCmtModal} commentsCount={comments.length} />
-        <AddComment comments={comments} newComment={newComment} />
+        <ActionButtons PostObj={PostObj} showCmtModal={showCmtModal} />
+        <div className={classes.Post__likes}>{PostObj.likes} likes </div>
+        <Caption PostObj={PostObj} />
+        <ViewComments
+          showCmtModal={showCmtModal}
+          commentsCount={PostObj.commentsArr.length}
+        />
+        <AddComment id={id} />
       </div>
       <div className={classes.linebreakLight} />
     </div>

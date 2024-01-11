@@ -3,7 +3,8 @@ import React, { useState } from "react";
 import classes from "./Caption.module.scss";
 
 function Caption(props) {
-  const {name, caption} = props;
+  const { PostObj } = props;
+  const {name, caption} = PostObj;
   const [more, showMore] = useState(false);
   return (
     <>

@@ -6,7 +6,8 @@ import Popup from "./Popup";
 import Dialog from "../../Aside/UserInfoBox/Dialog";
 
 function Header(props) {
-  const {name, profileImg, time, place} = props;
+  const { PostObj } = props;
+  const { name, profileImg, time, place } = PostObj;
   const [popup, showPopup] = useState(false);
   const [timer, setTimer] = useState(null);
   const [dialog, setDialog] = useState(false);
@@ -27,7 +28,7 @@ function Header(props) {
       },
     },
   ];
-  let circleId = "circleId"+profileImg;
+  let circleId = "circleId" + profileImg;
 
   const handleHoverAction = () => {
     setDialog(true);
@@ -61,14 +62,14 @@ function Header(props) {
           onMouseLeave={handleMouseLeave}
           className={classes.header__info}
         >
-          {dialog && <Dialog infoMain={name} img={profileImg-108} following={true} />}
+          {dialog && (
+            <Dialog infoMain={name} img={profileImg - 108} following={true} />
+          )}
           <span className={classes["header__info--name"]}>
             {name}{" "}
             <span className={classes["header__info--time"]}>• {time}</span>
           </span>
-          <span className={classes["header__info--location"]}>
-            {place}
-          </span>
+          <span className={classes["header__info--location"]}>{place}</span>
         </div>
         <span
           onClick={() => {

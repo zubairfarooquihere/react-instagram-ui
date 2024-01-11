@@ -269,24 +269,23 @@ export function generateRandomCommentsWithUser(number) {
   const getRandomInteger = (min, max) => {
     return Math.floor(Math.random() * (max - min + 1)) + min;
   }
-
-  //const randomComments = [];
-  //const usedIndexes = new Set();
   
   let randomComments = []; 
   
   for(let i = 0; i < number; i++) {
-    let commentsNumber = getRandomInteger(3, 17);
+    let commentsNumber = getRandomInteger(3, 4);
     let singlePostComments = [];
     for(let j = 0; j < commentsNumber; j++) {
       let commentIndex = Math.floor(Math.random() * comments.length);
       let NameIndex = Math.floor(Math.random() * names.length);
-      let likes = getRandomInteger(3, 30);
+      let likes = getRandomInteger(3, 15);
       
       let obj = {
+        id: i+'i'+j+'j',
         name: names[NameIndex],
         comment: comments[commentIndex],
         likes: likes,
+        selfLike: false,
       }
       singlePostComments.push(obj);
     }

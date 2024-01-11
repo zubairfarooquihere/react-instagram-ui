@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import classes from "./ActionButtons.module.scss";
 
+import { useDispatch, useSelector } from "react-redux";
+import { PostObjectsActions } from '../../../../redux/PostObjects'
 import {
   Like,
   Comment,
@@ -10,10 +12,13 @@ import {
   LikeActive,
 } from "../../../../ui/svg/HomePage";
 function ActionButtons(props) {
-  const { showCmtModal } = props;
-  const [like, setLike] = useState(false);
+  const dispatch = useDispatch();
+  const { PostObj, showCmtModal } = props;
+  const { id } = PostObj;
+  const like = useSelector((state) => state.PostObjects.PostObjects[id].selfLikes);
   const likeFunc = () => {
-    setLike(!like);
+    //setLike(!like);
+    dispatch(PostObjectsActions.postLike({id, like: !like}));
   };
   return (
     <>
