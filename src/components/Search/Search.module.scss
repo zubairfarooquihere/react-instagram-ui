@@ -1,0 +1,68 @@
+.searchSlider {
+  position: fixed;
+  background-color: var(--white-color);
+  color: var(--black-color);
+  box-shadow: 3rem 1rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.search {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  z-index: 10;
+  width: 100%;
+  height: 100%;
+
+  &__h1 {
+    padding: 25px 0 0 23px;
+    font-size: 23px;
+    font-weight: 550;
+  }
+
+  &__h3 {
+    padding: 21px 0 0 23px;
+    font-size: 16px;
+    //margin-bottom: 17px;
+    font-weight: 550;
+  }
+
+  &__list {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 70.75%;
+    width: 100%;
+
+    &--NoItem {
+      font-size: 15px;
+      color: rgb(93, 93, 93);
+    }
+  }
+
+  &__linebreakLight {
+    border-bottom: 3px solid var(--linebreak-color);
+    margin-top: 23px;
+  }
+}
+
+.topnav {
+  overflow: hidden;
+  margin: 0 auto;
+  margin-top: 40px;
+  width: 93%;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type="text"] {
+  outline: none;
+  border-radius: 7px;
+  padding: 11px 15px;
+  width: 100%;
+  border: none;
+  background-color: #f2efef;
+  font-size: 15px;
+
+  &::placeholder {
+    color: #808080;
+  }
+}

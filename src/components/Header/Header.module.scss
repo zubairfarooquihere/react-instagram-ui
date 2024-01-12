@@ -1,0 +1,73 @@
+@import "../../index.scss";
+
+.headerDiv {
+  display: none;
+  position: fixed;
+  background-color: var(--white-color);
+  z-index: 175;
+  height: 61px;
+  width: 100%;
+  border-bottom: 3px solid var(--linebreak-color);
+
+  @include respond(tab-port) {
+    display: block;
+  }
+}
+
+.header {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 15px;
+
+  @include respond(phone) {
+    padding: 0 7px;
+  }
+
+  &__one {
+    display: flex;
+  }
+
+  &__two {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 280px;
+
+    @include respond(phone) {
+      width: 270px;
+    }
+  }
+}
+
+.topnav {
+  overflow: hidden;
+}
+
+/* Style the search box inside the navigation bar */
+.topnav input[type="text"] {
+  outline: none;
+  border-radius: 7px;
+  padding: 7px 15px;
+  width: 240px;
+  border: none;
+  background-color: #f2efef;
+  font-size: 15px;
+
+  &::placeholder {
+    color: #808080;
+  }
+}
+
+.list {
+  &__svg {
+    cursor: pointer;
+  }
+
+  &__svgSelected {
+    cursor: pointer;
+    display: none;
+  }
+}

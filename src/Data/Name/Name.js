@@ -58,15 +58,15 @@ export function generateRandomNames(number) {
   ];
 
   const randomNames = [];
-  const usedIndexes = new Set();
+  //const usedIndexes = new Set();
 
   while (randomNames.length < number) {
     const randomIndex = Math.floor(Math.random() * names.length);
 
-    if (!usedIndexes.has(randomIndex)) {
+    //if (!usedIndexes.has(randomIndex)) {
       randomNames.push(names[randomIndex]);
-      usedIndexes.add(randomIndex);
-    }
+      //usedIndexes.add(randomIndex);
+    //}
   }
 
   return randomNames;
@@ -102,15 +102,15 @@ export function generateRandomPlaces(number) {
   ];
 
   const randomPlaces = [];
-  const usedIndexes = new Set();
+  //const usedIndexes = new Set();
 
   while (randomPlaces.length < number) {
     const randomIndex = Math.floor(Math.random() * places.length);
 
-    if (!usedIndexes.has(randomIndex)) {
+    //if (!usedIndexes.has(randomIndex)) {
       randomPlaces.push(places[randomIndex]);
-      usedIndexes.add(randomIndex);
-    }
+      //usedIndexes.add(randomIndex);
+    //}
   }
 
   return randomPlaces;
@@ -141,15 +141,15 @@ export function generateRandomMotivationalQuotes(number) {
   ];
 
   const randomMotivationalQuotes = [];
-  const usedIndexes = new Set();
+  //const usedIndexes = new Set();
 
   while (randomMotivationalQuotes.length < number) {
     const randomIndex = Math.floor(Math.random() * motivationalQuotes.length);
 
-    if (!usedIndexes.has(randomIndex)) {
+    //if (!usedIndexes.has(randomIndex)) {
       randomMotivationalQuotes.push(motivationalQuotes[randomIndex]);
-      usedIndexes.add(randomIndex);
-    }
+      //usedIndexes.add(randomIndex);
+    //}
   }
 
   return randomMotivationalQuotes;

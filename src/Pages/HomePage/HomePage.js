@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 
 import classes from "./HomePage.module.scss";
 
+import Header from "../../components/Header/Header";
 import Stories from "../../components/HomePage/Stories/Stories";
 import Post from "../../components/HomePage/Post/Post";
 import Aside from "../../components/HomePage/Aside/Aside";
@@ -19,6 +20,7 @@ function HomePage() {
 
   return (
     <div data-theme={weninfo.darkMode ? "dark" : "light"} className={classes.homepage}>
+      <Header />
       <div className={classes.homepage__main}>
         <div className={classes["homepage__main--partOne"]}>
           <Stories />

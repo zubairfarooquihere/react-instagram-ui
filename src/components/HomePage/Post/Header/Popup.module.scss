@@ -3,7 +3,7 @@
   top: 50%;
   left: 50%;
   //min-height: 290px;
-  width: 400px;
+  width: 40rem;
   background-color: var(--linebreak-color);
   z-index: 176;
   transform: translate(-50%, -50%);
@@ -16,7 +16,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: 14.5px;
+    font-size: 1.5rem;
 
     li {
       cursor: pointer;

@@ -1,3 +1,5 @@
+@import "../../../../index.scss";
+
 .AtBtn {
   height: 40px;
   width: 100%;
@@ -15,16 +17,23 @@
       }
     }
   }
-  
 
   &__Like {
-      
+    @include respond(phone) {
+      margin-right: 7px;
+    }
   }
 
   &__Comment {
+    @include respond(phone) {
+      margin-right: 7px;
+    }
   }
 
   &__Share {
+    @include respond(phone) {
+      margin-right: 7px;
+    }
   }
 
   &__Save {

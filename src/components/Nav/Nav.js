@@ -10,6 +10,7 @@ import { more, moreSelect } from "../../ui/svg/Nav";
 import DropDown from "./DropDown/DropDown";
 import IconList from "./IconList";
 import NotificationSlider from "../Notification/NotificationSlider";
+import Search from "../Search/Search";
 import { useSelector } from "react-redux";
 
 import { Tooltip } from "react-tooltip";
@@ -189,7 +190,7 @@ function Nav() {
           </AnimatePresence>
 
           <AnimatePresence>
-            {openSearch && <NotificationSlider />}
+            {openSearch && <Search />}
           </AnimatePresence>
 
           <AnimatePresence>

@@ -39,7 +39,7 @@ export const fetchPostsData = () => {
     };
     try {
       const PostObjectsArr = await fetchData();
-      console.log("fetchPostsData");
+      //console.log("fetchPostsData");
       dispatch(
         PostObjectsActions.addArray({ arr: PostObjectsArr || [], })
       );

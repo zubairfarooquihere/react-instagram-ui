@@ -17,7 +17,6 @@ function ActionButtons(props) {
   const { id } = PostObj;
   const like = useSelector((state) => state.PostObjects.PostObjects[id].selfLikes);
   const likeFunc = () => {
-    //setLike(!like);
     dispatch(PostObjectsActions.postLike({id, like: !like}));
   };
   return (
