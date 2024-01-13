@@ -1,5 +1,15 @@
 @import "../../index.scss";
 
+.abc {
+  position: fixed;
+  left: 0;
+  top: 60px;
+  width: 100%;
+  height: 650px;
+  z-index: 300;
+  background-color: white;
+}
+
 .headerDiv {
   display: none;
   position: fixed;

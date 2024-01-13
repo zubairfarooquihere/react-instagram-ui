@@ -14,7 +14,7 @@
   overflow: hidden;
   
   @include respond(tab-port) {
-    width: 80rem;
+    width: 63rem;
   }
 
   @include respond(phone) {

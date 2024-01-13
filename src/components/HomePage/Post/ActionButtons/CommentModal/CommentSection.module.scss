@@ -67,11 +67,7 @@
       width: 40%;
 
       @include respond(tab-port) {
-        width: 80%;
-      }
-
-      @include respond(phone) {
-        width: 65%;
+        width: 170px;
       }
 
       span {

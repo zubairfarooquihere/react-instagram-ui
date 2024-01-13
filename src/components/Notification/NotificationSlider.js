@@ -51,7 +51,7 @@ function generateRandomNames(number) {
 }
 
 function NotificationSlider(props) {
-  //const { } = props;
+  const { fullscreen } = props;
   const newRef = useRef(null);
   const [weekData, setWeekData] = useState([]);
   const [monthData, setMonthData] = useState([]);
@@ -65,18 +65,23 @@ function NotificationSlider(props) {
   }, []);
 
   useEffect(() => {
+    if(fullscreen){
+      document.body.style.overflowY = "hidden";
+    }
     document.addEventListener("mousedown", handleOutsideNotification);
     setWeekData(generateRandomNames(2));
     setMonthData(generateRandomNames(3));
     setEarlierData(generateRandomNames(6));
     return () => {
+      document.body.style.overflowY = "scroll";
       document.removeEventListener("mousedown", handleOutsideNotification);
     };
-  }, [handleOutsideNotification]);
+  }, [fullscreen, handleOutsideNotification]);
+
 
   return (
     <motion.div
-      className={classes.notificationSlider}
+      className={fullscreen ? '' : classes.notificationSlider}
       initial={{ left: 0, width: 0, height: "100%" }}
       animate={{ left: 70, width: 405, height: "100%" }}
       exit={{ opacity: 0, width: 0 }}
