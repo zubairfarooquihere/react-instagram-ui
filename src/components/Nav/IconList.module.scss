@@ -44,7 +44,8 @@
   &__text {
     font-size: 16px;
 
-    @include respond(tab-port) { // width < 1200?
+    @include respond(tab-port) {
+      // width < 1200?
       //display: none;
     }
   }
@@ -53,4 +54,9 @@
     width: 25px;
     margin-right: 15px;
   }
+}
+
+.NavLink {
+  color: inherit;
+  text-decoration: inherit;
 }

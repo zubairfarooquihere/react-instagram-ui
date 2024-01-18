@@ -19,6 +19,8 @@ import {
   generateRandomCommentsWithUser,
 } from "../../Data/Name/Name";
 let length = 0;
+let scrollGlobal = 0;
+//let globalScroll = 0;
 function HomePage() {
   const dispatch = useDispatch();
   const myRef = useRef();
@@ -54,8 +56,17 @@ function HomePage() {
     return arr;
   }, []);
 
+  const handleScroll = () => {
+    scrollGlobal = window.scrollY;
+  };
+
   useEffect(() => {
-    dispatch(fetchPostsData());
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    if (scrollGlobal === 0) {
+      dispatch(fetchPostsData());
+    } else {
+      window.scrollTo({ top: scrollGlobal, behavior: "instant" });
+    }
 
     const observer = new IntersectionObserver((entries, observer) => {
       const entry = entries[0];
@@ -63,13 +74,16 @@ function HomePage() {
         setLoading(true);
         setTimeout(() => {
           setLoading(false);
-          console.log(length);
           let arr = fetchData(length + 1);
           dispatch(PostObjectsActions.addArray({ arr }));
         }, 2300);
       }
     });
     observer.observe(myRef.current);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [dispatch, fetchData]);
 
   return (

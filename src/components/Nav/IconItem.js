@@ -1,5 +1,6 @@
-import React, {useEffect, useCallback} from "react";
+import React, { useEffect, useCallback } from "react";
 import { useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
 function IconItem(props) {
   const {
     svg,
@@ -13,6 +14,7 @@ function IconItem(props) {
     animate,
     animateShowHideText,
     closeSlider,
+    path,
   } = props;
 
   const weninfo = useSelector((state) => state.weninfo);
@@ -23,7 +25,7 @@ function IconItem(props) {
   const wrapper = `${title}wrapper`;
 
   const animateHover = (svgId) => {
-    animate("#"+wrapper, { scale: [1, 1.1, 1] }, { duration: 0.3 });
+    animate("#" + wrapper, { scale: [1, 1.1, 1] }, { duration: 0.3 });
   };
 
   const animateMouseDown = () => {
@@ -31,24 +33,53 @@ function IconItem(props) {
     animate("#" + svgId, { scale: 0.9 });
   };
 
-  const animateBottomNav = useCallback((open) => {
-    if (open) {
-      animate("#SearchLiId", { display: 'none' });
-      animate("#MessagesLiId", { order: 5 });
-      animate("#" + liId, { minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
-      animate("#ProfileLiId" , { order: 6, minHeight: '100%', marginRight: 0, marginLeft: 0, marginBottom: 0, backgroundColor: 'inherit' });
-      animate("#NotificationsLiId", { display: 'none' });
-    } else {
-      animate("#SearchLiId", { display: '' });
-      animate("#MessagesLiId", { order: '' });
-      animate("#" + liId, { minHeight: '', marginRight: '', marginLeft: '', marginBottom: '', backgroundColor: '' });
-      animate("#profileLi" , { order: '', minHeight: '', marginRight: '', marginLeft: '', marginBottom: '', backgroundColor: '' });
-      animate("#NotificationsLiId", { display: '' });
-    }
-  },[animate, liId]);
+  const animateBottomNav = useCallback(
+    (open) => {
+      if (open) {
+        animate("#SearchLiId", { display: "none" });
+        animate("#MessagesLiId", { order: 5 });
+        animate("#" + liId, {
+          minHeight: "100%",
+          marginRight: 0,
+          marginLeft: 0,
+          marginBottom: 0,
+          backgroundColor: "inherit",
+        });
+        animate("#ProfileLiId", {
+          order: 6,
+          minHeight: "100%",
+          marginRight: 0,
+          marginLeft: 0,
+          marginBottom: 0,
+          backgroundColor: "inherit",
+        });
+        animate("#NotificationsLiId", { display: "none" });
+      } else {
+        animate("#SearchLiId", { display: "" });
+        animate("#MessagesLiId", { order: "" });
+        animate("#" + liId, {
+          minHeight: "",
+          marginRight: "",
+          marginLeft: "",
+          marginBottom: "",
+          backgroundColor: "",
+        });
+        animate("#profileLi", {
+          order: "",
+          minHeight: "",
+          marginRight: "",
+          marginLeft: "",
+          marginBottom: "",
+          backgroundColor: "",
+        });
+        animate("#NotificationsLiId", { display: "" });
+      }
+    },
+    [animate, liId]
+  );
 
   useEffect(() => {
-    if(weninfo.screenSize <= weninfo.minBottomNav) {
+    if (weninfo.screenSize <= weninfo.minBottomNav) {
       animateBottomNav(true);
     } else {
       animateBottomNav(false);
@@ -66,7 +97,6 @@ function IconItem(props) {
         animateRemoveHoldLi(liId, svgId, svgSelectedId);
       }}
       onMouseDown={animateMouseDown}
-
       onClick={() => {
         if (svgId === `SearchSvg`) {
           controlSearchSlider();
@@ -79,12 +109,18 @@ function IconItem(props) {
       }}
     >
       <span id={wrapper}>
-        <span id={svgId} className={classes.list__svg}>
-          {svg}
-        </span>
-        <p id={svgSelectedId} className={`${classes.list__svgSelected} `}>
-          {svgSelect}
-        </p>
+        <NavLink
+          className={classes.NavLink}
+          style={{ textDecoration: "none", color: 'none', backgroundColor: 'none' }}
+          to={path}
+        >
+          <span id={svgId} className={classes.list__svg}>
+            {svg}
+          </span>
+          <p id={svgSelectedId} className={`${classes.list__svgSelected} `}>
+            {svgSelect}
+          </p>
+        </NavLink>
       </span>
       <span className={classes.list__text}>{title}</span>
     </motion.li>

@@ -27,7 +27,7 @@ import classes from "./IconList.module.scss";
 const IconItemList = [
   { svg: home, svgSelect: homeSelect, title: "Home" },
   { svg: search, svgSelect: searchSelect, title: "Search" },
-  { svg: explore, svgSelect: exploreSelect, title: "Explore" },
+  { svg: explore, svgSelect: exploreSelect, title: "Explore", path: '/explore' },
   { svg: reel, svgSelect: reelSelect, title: "Reel" },
   { svg: messages, svgSelect: messagesSelect, title: "Messages" },
   { svg: notification, svgSelect: notificationSelect, title: "Notifications" },
@@ -141,6 +141,7 @@ function IconList(props) {
         controlSearchSlider={controlSearchSlider}
         animateShowHideText={animateShowHideText}
         closeSlider={closeSlider}
+        path={obj.path}
       />
     );
   });

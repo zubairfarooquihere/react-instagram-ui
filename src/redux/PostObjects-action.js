@@ -7,7 +7,7 @@ import {
   formatTime,
   generateRandomCommentsWithUser,
 } from "../Data/Name/Name";
-
+import { v4 as uuid } from "uuid";
 const callData = 10;
 
 export const fetchPostsData = () => {
@@ -22,7 +22,7 @@ export const fetchPostsData = () => {
       let arr = [];
       for (let i = 0; i < callData; i++) {
         let obj = {
-          id: "Post" + i,
+          id: "Post" + uuid() + i,
           name: namesArr[i],
           place: placesArr[i],
           caption: captionsArr[i],
