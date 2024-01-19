@@ -1,3 +1,5 @@
+@import "../../../index.scss";
+
 .exporeContext {
   height: 613px;
   width: 960px;
@@ -6,6 +8,22 @@
   grid-template-rows: repeat(2, 300px);
   grid-template-columns: repeat(3, 1fr);
   grid-gap: 5px;
+  margin-bottom: -3px;
+
+  @include respond(page-home) {
+    grid-template-rows: repeat(2, 243px);
+    grid-gap: 3px;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 3px;
+  }
+
+  @include respond(phone) {
+    grid-template-rows: repeat(2, 143px);
+    grid-gap: 3px;
+    width: 100%;
+    height: 100%;
+  }
 }
 
 .block {

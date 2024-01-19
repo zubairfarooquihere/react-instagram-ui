@@ -47,7 +47,7 @@ function ExporePage() {
   const grab_data = useCallback(async () => {
     // set the apikey and limit
     var apikey = "LIVDSRZULELA";
-    var lmt = 1;
+    var lmt = 3;
 
     // test search term
     var search_term = "excited";
