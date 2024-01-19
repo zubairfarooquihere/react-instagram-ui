@@ -273,7 +273,7 @@ export function generateRandomCommentsWithUser(number) {
   let randomComments = []; 
   
   for(let i = 0; i < number; i++) {
-    let commentsNumber = getRandomInteger(3, 4);
+    let commentsNumber = getRandomInteger(1, 7);
     let singlePostComments = [];
     for(let j = 0; j < commentsNumber; j++) {
       let commentIndex = Math.floor(Math.random() * comments.length);
