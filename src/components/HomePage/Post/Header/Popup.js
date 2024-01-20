@@ -6,11 +6,11 @@ import Modal from "../../../../ui/Modal/Modal";
 function Popup(props) {
   const { popupItems, showPopup } = props;
 
-  let items = popupItems.map((item) => {
+  let items = popupItems.map((item, index) => {
     let classz = item.warning ? classes.warning : null;
     let func = item.onClick ? item.onClick : null;
     return (
-      <li onClick={func} className={classz}>
+      <li key={index} onClick={func} className={classz}>
         {item.text}
       </li>
     );

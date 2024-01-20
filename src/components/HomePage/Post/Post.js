@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import classes from "./Post.module.scss";
 import { useSelector } from "react-redux";
 
+import { PostObjectsActions } from "../../../redux/PostObjects";
+
 import Header from "./Header/Header";
 import Picture from "./Picture/Picture";
 import ActionButtons from "./ActionButtons/ActionButtons";
@@ -31,7 +33,7 @@ function Post(props) {
           showCmtModal={showCmtModal}
           commentsCount={PostObj.commentsArr.length}
         />
-        <AddComment id={id} />
+        <AddComment Obj={PostObj} Action={PostObjectsActions} />
       </div>
       <div className={classes.linebreakLight} />
     </div>

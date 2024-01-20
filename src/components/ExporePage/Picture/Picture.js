@@ -1,10 +1,12 @@
-import React from "react";
+import React,{ useState } from "react";
 import classes from "./Picture.module.scss";
 
+import CommentModal from "../CommentModal/CommentModal";
 function Picture(props) {
-  const { url, comments, likes } = props;
-
-  //console.log(likes);
+  const { ExploreObj, url } = props;
+  const { commentsArr, likes } = ExploreObj;
+  const [CmtModal, showCmtModal] = useState(false);
+  //console.log(ExploreObj);
   const heart = (
     <svg
       aria-label="Unlike"
@@ -41,7 +43,8 @@ function Picture(props) {
 
   return (
     <>
-      <div className={classes.picture}>
+      {CmtModal && (<CommentModal url={url} ExploreObj={ExploreObj} showCmtModal={showCmtModal} />)}
+      <div className={classes.picture} onClick={()=>{showCmtModal(true)}}>
         <div className={classes.cover}>
           <div className={`${classes.cover__text} ${classes.cover__likes}`}>
             {heart}
@@ -49,7 +52,7 @@ function Picture(props) {
           </div>
           <div className={`${classes.cover__text} ${classes.cover__comments}`}>
             {Comment}
-            <span>{comments.length}</span>
+            <span>{commentsArr.length}</span>
           </div>
         </div>
         <img src={url} alt="" />

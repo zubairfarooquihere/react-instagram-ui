@@ -1,14 +1,22 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import classes from "./ExporePage.module.scss";
 
 import ExporeContext from "../../components/ExporePage/ExporeContext/ExporeContext";
 import { fetchExploreData } from "../../redux/Explore/ExploreObjects-action";
 import { useDispatch, useSelector } from "react-redux";
+import Spinner from "../../ui/Spinner/Spinner";
+let length = 0;
+let scrollGlobal = 0;
+let gifArrGlobal = [];
+
 function ExporePage() {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+  const myRef = useRef();
   const ExploreObjectsArr = useSelector(
     (state) => state.ExploreObjects.ExploreObjectsArr
   );
+  //console.log(ExploreObjectsArr);
   const [gifArr, setGifArr] = useState([]);
   function httpGetAsync(theUrl, callback) {
     // create the request object
@@ -47,10 +55,12 @@ function ExporePage() {
   const grab_data = useCallback(async () => {
     // set the apikey and limit
     var apikey = "LIVDSRZULELA";
-    var lmt = 3;
-
+    var lmt = 1;
+    
+    const list = ['Pokemon', 'Tekken', 'Harry Potter', 'Fast and Furious', 'Gym', 'Cats', 'Bollywood'];
+    const randomIndex = Math.floor(Math.random() * list.length);
     // test search term
-    var search_term = "excited";
+    var search_term = list[randomIndex];
 
     // using default locale of en_US
     var search_url =
@@ -64,14 +74,50 @@ function ExporePage() {
     return httpGetAsync(search_url, tenorCallback_search);
   }, []);
 
+  const handleScroll = () => {
+    scrollGlobal = window.scrollY;
+  };
+
   useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true });
     const Asyncgetdata = async () => {
+      console.log("Asyncgetdata");
       await grab_data();
     };
-    if (gifArr.length === 0) {
+
+    if (
+      scrollGlobal === 0 &&
+      gifArr.length === 0 &&
+      gifArrGlobal.length === 0 &&
+      length === 0
+    ) {
+      console.log("kacioaciwon");
       Asyncgetdata();
+    } else {
+      window.scrollTo({ top: scrollGlobal, behavior: "instant" });
     }
+
+    if (gifArr.length !== 0) {
+      gifArrGlobal = gifArr;
+    }
+
+    // const observer = new IntersectionObserver((entries, observer) => {
+    //   const entry = entries[0];
+    //   if (entry.isIntersecting) {
+    //     setLoading(true);
+    //     setTimeout(() => {
+    //       setLoading(false);
+    //       Asyncgetdata();
+    //     }, 2300);
+    //   }
+    // });
+    // observer.observe(myRef.current);
+    setLoading(false);
     dispatch(fetchExploreData(gifArr));
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, [dispatch, grab_data, gifArr]);
 
   return (
@@ -80,18 +126,17 @@ function ExporePage() {
       className={classes.explorepage}
     >
       {ExploreObjectsArr.map((id, index) => {
+        length = index;
         let gifPosition = { gridRow: "1/3", gridColumn: "3/4" };
-        if(index % 2 !== 0){
+        if (index % 2 !== 0) {
           gifPosition = { gridRow: "1/3", gridColumn: "1/2" };
         }
-        return (
-          <ExporeContext
-            key={id}
-            id={id}
-            gifPosition={gifPosition}
-          />
-        );
+        return <ExporeContext key={id} id={id} gifPosition={gifPosition} />;
       })}
+      <div ref={myRef} className={classes.bottom} />
+      <div className={classes.loader}>
+        {loading && <Spinner width={"5.5em"} color={"rgb(225, 225, 225)"} />}
+      </div>
     </div>
   );
 }

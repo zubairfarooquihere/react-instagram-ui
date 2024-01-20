@@ -10,20 +10,41 @@ export const fetchExploreData = (gifArr) => {
     const fetchData = async () => {
       const getRandomInteger = (min, max) => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
-      }
+      };
       const callData = gifArr.length;
       let arr = [];
-      for (let i = 0; i < callData; i++) {
+      let obj = {};
+
+      for (let j = 0; j < callData; j++) {
+        obj = {
+          id: "Explore" + uuid() + j,
+          subObjArr: [],
+        }
+        const createSubObjs = 5;
         const commentsArr = generateRandomCommentsWithUser(5);
         const likesArr = generateRandomNumbers(5);
 
-        let obj = {
-          id: "Explore" + uuid() + i,
-          commentsArr: commentsArr,
-          likes: likesArr,
-          img: [250 + i + getRandomInteger(0, 30), 250 + i + getRandomInteger(0, 30), 250 + i + getRandomInteger(0, 30), 250 + i + getRandomInteger(0, 30)],
-          gifUrl: gifArr[i]["media"][0]["mediumgif"]["url"]
-        };
+        for (let i = 0; i < createSubObjs; i++) {
+          let id = "SubExplore" + uuid() + i;
+          //console.log(i === createSubObjs-1 ? "Gif" : "Image");
+          let subObj = {
+            id: id,
+            mainObjId: obj.id,
+            type: i === createSubObjs-1 ? "Gif" : "Image",
+            commentsArr: commentsArr[i],
+            img: i === createSubObjs-1 ? gifArr[j]['media'][0]['mediumgif']['url'] : 250 + i + getRandomInteger(0, 30),
+            likes: likesArr[i],
+            selfLikes: false,
+          };
+          //console.log('SubExplore');
+          obj.subObjArr.push(id);
+          obj = {
+            ...obj,
+            [id]: {...subObj},
+          };
+        }
+        // console.log("obj");
+        //console.log(obj);
         arr.push(obj);
       }
       return arr;

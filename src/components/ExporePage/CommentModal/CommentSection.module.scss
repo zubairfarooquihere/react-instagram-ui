@@ -1,0 +1,129 @@
+@import "../../../index.scss";
+
+.CmtSec {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  scrollbar-width: thin;
+
+  @include respond(tab-port) {
+    display: none;
+  }
+}
+
+.header {
+  position: relative;
+  height: 44px;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 6fr 1fr;
+  text-align: center;
+
+  &:not(:last-child) {
+    margin-bottom: 13px;
+  }
+
+  &__profile {
+    cursor: pointer;
+    place-self: center;
+    position: relative;
+    border-radius: 100%;
+    width: 69%;
+    height: 89%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    img {
+      position: relative;
+      z-index: 10;
+      width: 83%;
+      height: 83%;
+      object-fit: cover;
+      border-radius: 100%;
+      object-position: center;
+    }
+  }
+
+  &__info {
+    padding-top: 7px;
+    font-size: 13.5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+
+    &--name {
+      cursor: pointer;
+      font-weight: 550;
+      margin-bottom: 3px;
+    }
+
+    &--details {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+      font-size: 12.5px;
+      font-weight: 400;
+      color: #8e8e8e;
+      width: 40%;
+
+      @include respond(tab-port) {
+        width: 170px;
+      }
+
+      span {
+        cursor: pointer;
+      }
+
+      &--time {
+      }
+
+      &--like {
+        font-weight: 550;
+      }
+
+      &--reply {
+        font-weight: 550;
+      }
+
+      &--more {
+        svg {
+          font-size: 1px;
+          height: 17px;
+        }
+      }
+    }
+
+    &--comment {
+      cursor: pointer;
+      font-size: 13.5px;
+      font-weight: 500;
+    }
+  }
+
+  &__like {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+
+    svg {
+      height: 15px;
+    }
+  }
+}
+
+.circle {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  background: linear-gradient(white, white) padding-box,
+    linear-gradient(to right, #d616c9, #ffc806) border-box;
+  border: 2px solid transparent;
+}

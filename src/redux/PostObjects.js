@@ -15,8 +15,8 @@ const PostObjects = createSlice({
       });
     },
     postLike(state, action) {
-      const {id, like} = action.payload
-      if(state.PostObjects[id].selfLikes === like) {
+      const { id, like } = action.payload;
+      if (state.PostObjects[id].selfLikes === like) {
         return;
       }
       state.PostObjects[id].selfLikes = like;
@@ -24,11 +24,13 @@ const PostObjects = createSlice({
       state.PostObjects[id].likes = like ? count + 1 : count - 1;
     },
     likeComment(state, action) {
-      const {id, index, like} = action.payload
-      state.PostObjects[id].commentsArr[index].selfLike = like
+      const { id, index, like } = action.payload;
+      state.PostObjects[id].commentsArr[index].selfLike = like;
     },
     addComment(state, action) {
-      const {id, commentObj} = action.payload
+      const { Obj, commentObj } = action.payload;
+      console.log(action.payload);
+      const { id } = Obj;
       state.PostObjects[id].commentsArr.unshift(commentObj);
     },
   },

@@ -4,18 +4,20 @@ import classes from "./CommentModal.module.scss";
 import { AnimatePresence } from "framer-motion";
 
 import { useDispatch } from "react-redux";
-import { PostObjectsActions } from '../../../../../redux/PostObjects'
+import { ExploreObjectsActions } from '../../../redux/Explore/ExploreObjects.js'
 
-import Modal from "../../../../../ui/Modal/Modal";
-import Header from "../../Header/Header";
+import Modal from "../../../ui/Modal/Modal";
+import HeartAnimation from "../../../ui/animation/HeartAnimation";
+import Header from "../../HomePage/Post/Header/Header.js";
 import CommentSection from "./CommentSection";
-import ActionButtons from "../ActionButtons";
-import AddComment from "../../AddComment/AddComment";
-import HeartAnimation from "../../../../../ui/animation/HeartAnimation";
+import ActionButtons from "./ActionButtons.js";
+import AddComment from "../../HomePage/Post/AddComment/AddComment";
 
 function CommentModal(props) {
   const dispatch = useDispatch();
-  const { PostObj, showCmtModal } = props;
+  const { ExploreObj, url, showCmtModal } = props;
+  const { commentsArr } = ExploreObj;
+  //console.log(ExploreObj);
   const [heart, showHeart] = useState(false);
 
   const Liked = () => {
@@ -23,8 +25,7 @@ function CommentModal(props) {
       return;
     }
     showHeart(true);
-    let id = PostObj.id
-    dispatch(PostObjectsActions.postLike({id, like: true}));
+    dispatch(ExploreObjectsActions.postLike({ExploreObj, like: true}));
     let timer = setTimeout(() => {
       showHeart(false);
       clearInterval(timer);
@@ -43,24 +44,24 @@ function CommentModal(props) {
           <AnimatePresence mode="wait">
             {heart && (<HeartAnimation />)}
           </AnimatePresence>
-          <img src={`https://picsum.photos/500/${PostObj.img}`} alt="" />
+          <img src={url} alt="" />
         </div>
         <div className={`${classes['cmtModal__comments']} ${classes['addPadding']}`}>
-          <div className={`${classes['addPadding']}`}>
-            <Header PostObj={PostObj} />
+          <div className={`${classes['addPadding']} ${classes['Header']}`}>
+            <Header PostObj={{name: 'Abc', profileImg: 111, time: '15m', place: 'xyz'}} />
           </div>
           <div className={classes.linebreakLight} />
           <div className={classes.cmtModal__section}>
-            <CommentSection id={PostObj.id} />
+            <CommentSection ExploreObj={ExploreObj} commentsArr={commentsArr} />
             <div className={classes.linebreakLight} />
             <div className={classes["cmtModal__section--info"]}>
-              <ActionButtons PostObj={PostObj} />
-              <div className={classes.likes}> {PostObj.likes} likes </div>
-              <div className={classes.time}>{PostObj.time} ago</div>
+              <ActionButtons ExploreObj={ExploreObj} />
+              <div className={classes.likes}> {ExploreObj.likes} likes </div>
+              <div className={classes.time}>{15} ago</div>
             </div>
             <div className={classes.linebreakLight} />
             <div className={classes.addcomment}>
-              <AddComment Obj={PostObj} Action={PostObjectsActions} />
+              <AddComment Obj={ExploreObj} Action={ExploreObjectsActions} />
             </div>
           </div>
         </div>

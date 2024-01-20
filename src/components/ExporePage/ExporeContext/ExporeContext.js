@@ -9,31 +9,29 @@ function ExporeContext(props) {
   const ExploreObj = useSelector(
     (state) => state.ExploreObjects.ExploreObjects[id]
   );
-  //console.log(ExploreObj);
-  const Images = ExploreObj.img.map((ele, index) => {
-    return (
-      <Picture
-        key={id + ele + index}
-        url={`https://picsum.photos/250/${ele}`}
-        comments={ExploreObj.commentsArr[index]}
-        likes={ExploreObj.likes[index]}
-      />
-    );
-  });
-
-  return (
-    <div className={classes.exporeContext}>
-      <div style={{ ...gifPosition }} className={classes.block}>
+  const Images = ExploreObj.subObjArr.map((id) => {
+    if (ExploreObj[id].type === "Image") {
+      return (
         <Picture
           key={id}
-          url={ExploreObj.gifUrl}
-          comments={ExploreObj.commentsArr[ExploreObj.commentsArr.length - 1]}
-          likes={ExploreObj.likes[ExploreObj.likes.length - 1]}
+          ExploreObj={ExploreObj[id]}
+          url={`https://picsum.photos/${ExploreObj[id].img}/${ExploreObj[id].img}`}
         />
-      </div>
-      {Images}
-    </div>
-  );
+      );
+    } else {
+      return (
+        <div key={'gif'+id} style={{ ...gifPosition }} className={classes.block}>
+          <Picture
+            key={id}
+            ExploreObj={ExploreObj[id]}
+            url={ExploreObj[id]['img']}
+          />
+        </div>
+      );
+    }
+  });
+
+  return <div className={classes.exporeContext}>{Images}</div>;
 }
 
 export default ExporeContext;
