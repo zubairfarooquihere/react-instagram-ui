@@ -1,12 +1,14 @@
-import React,{ useState } from "react";
+import React, { useState, useEffect } from "react";
 import classes from "./Picture.module.scss";
 
 import CommentModal from "../CommentModal/CommentModal";
+let temp = {};
+let indexArr = [];
 function Picture(props) {
-  const { ExploreObj, url } = props;
+  const { ExploreObj, url, index } = props;
   const { commentsArr, likes } = ExploreObj;
   const [CmtModal, showCmtModal] = useState(false);
-  //console.log(ExploreObj);
+
   const heart = (
     <svg
       aria-label="Unlike"
@@ -41,10 +43,32 @@ function Picture(props) {
     </svg>
   );
 
+  useEffect(() => {
+    if (temp[index] === undefined) {
+      temp = { ...temp, [index]: { ...ExploreObj } };
+      indexArr.push(index);
+    } else {
+      temp[index] = { ...ExploreObj };
+    }
+  }, [ExploreObj, index]);
+
   return (
     <>
-      {CmtModal && (<CommentModal url={url} ExploreObj={ExploreObj} showCmtModal={showCmtModal} />)}
-      <div className={classes.picture} onClick={()=>{showCmtModal(true)}}>
+      {CmtModal && (
+        <CommentModal
+          url={url}
+          showCmtModal={showCmtModal}
+          temp={temp}
+          indexArr={indexArr}
+          currentIndex={index}
+        />
+      )}
+      <div
+        className={classes.picture}
+        onClick={() => {
+          showCmtModal(true);
+        }}
+      >
         <div className={classes.cover}>
           <div className={`${classes.cover__text} ${classes.cover__likes}`}>
             {heart}

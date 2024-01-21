@@ -54,7 +54,7 @@ function CommentModal(props) {
             <CommentSection id={PostObj.id} />
             <div className={classes.linebreakLight} />
             <div className={classes["cmtModal__section--info"]}>
-              <ActionButtons PostObj={PostObj} />
+              <ActionButtons PostObj={PostObj} showCmtModal={()=>{}} />
               <div className={classes.likes}> {PostObj.likes} likes </div>
               <div className={classes.time}>{PostObj.time} ago</div>
             </div>

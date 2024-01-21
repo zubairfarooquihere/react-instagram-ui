@@ -7,7 +7,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../../ui/Spinner/Spinner";
 let length = 0;
 let scrollGlobal = 0;
-let gifArrGlobal = [];
 
 function ExporePage() {
   const dispatch = useDispatch();
@@ -17,7 +16,7 @@ function ExporePage() {
     (state) => state.ExploreObjects.ExploreObjectsArr
   );
   //console.log(ExploreObjectsArr);
-  const [gifArr, setGifArr] = useState([]);
+  //const [gifArr, setGifArr] = useState([]);
   function httpGetAsync(theUrl, callback) {
     // create the request object
     var xmlHttp = new XMLHttpRequest();
@@ -40,24 +39,34 @@ function ExporePage() {
   }
 
   // callback for the top 8 GIFs of search
-  function tenorCallback_search(responsetext) {
+  const tenorCallback_search = useCallback(async (responsetext) => {
     // parse the json response
     var response_objects = JSON.parse(responsetext);
 
     let top_10_gifs = response_objects["results"];
     //console.log(top_10_gifs[0]["media"][0]["mediumgif"]["url"]);
-    setGifArr(top_10_gifs);
+    //setGifArr(top_10_gifs);
+    dispatch(fetchExploreData(top_10_gifs));
 
     return top_10_gifs;
-  }
+  }, [dispatch]);
 
   // function to call the trending and category endpoints
   const grab_data = useCallback(async () => {
     // set the apikey and limit
     var apikey = "LIVDSRZULELA";
-    var lmt = 1;
-    
-    const list = ['Pokemon', 'Tekken', 'Harry Potter', 'Fast and Furious', 'Gym', 'Cats', 'Bollywood'];
+    var lmt = 10;
+
+    const list = [
+      "Pokemon",
+      "Tekken",
+      "Harry Potter",
+      "Fast and Furious",
+      "Gym",
+      "Cats",
+      "Bollywood",
+      "Gaming",
+    ];
     const randomIndex = Math.floor(Math.random() * list.length);
     // test search term
     var search_term = list[randomIndex];
@@ -72,7 +81,7 @@ function ExporePage() {
       lmt;
 
     return httpGetAsync(search_url, tenorCallback_search);
-  }, []);
+  }, [tenorCallback_search]);
 
   const handleScroll = () => {
     scrollGlobal = window.scrollY;
@@ -81,44 +90,35 @@ function ExporePage() {
   useEffect(() => {
     window.addEventListener("scroll", handleScroll, { passive: true });
     const Asyncgetdata = async () => {
-      console.log("Asyncgetdata");
       await grab_data();
     };
 
     if (
       scrollGlobal === 0 &&
-      gifArr.length === 0 &&
-      gifArrGlobal.length === 0 &&
       length === 0
     ) {
-      console.log("kacioaciwon");
       Asyncgetdata();
     } else {
       window.scrollTo({ top: scrollGlobal, behavior: "instant" });
     }
 
-    if (gifArr.length !== 0) {
-      gifArrGlobal = gifArr;
-    }
-
-    // const observer = new IntersectionObserver((entries, observer) => {
-    //   const entry = entries[0];
-    //   if (entry.isIntersecting) {
-    //     setLoading(true);
-    //     setTimeout(() => {
-    //       setLoading(false);
-    //       Asyncgetdata();
-    //     }, 2300);
-    //   }
-    // });
-    // observer.observe(myRef.current);
+    const observer = new IntersectionObserver((entries, observer) => {
+      const entry = entries[0];
+      if (entry.isIntersecting) {
+        setLoading(true);
+        setTimeout(() => {
+          setLoading(false);
+          Asyncgetdata();
+        }, 2300);
+      }
+    });
+    observer.observe(myRef.current);
     setLoading(false);
-    dispatch(fetchExploreData(gifArr));
 
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [dispatch, grab_data, gifArr]);
+  }, [dispatch, grab_data]);
 
   return (
     <div
@@ -131,8 +131,16 @@ function ExporePage() {
         if (index % 2 !== 0) {
           gifPosition = { gridRow: "1/3", gridColumn: "1/2" };
         }
-        return <ExporeContext key={id} id={id} gifPosition={gifPosition} />;
+        return (
+          <ExporeContext
+            key={id}
+            ExporeContextIndex={index}
+            id={id}
+            gifPosition={gifPosition}
+          />
+        );
       })}
+
       <div ref={myRef} className={classes.bottom} />
       <div className={classes.loader}>
         {loading && <Spinner width={"5.5em"} color={"rgb(225, 225, 225)"} />}

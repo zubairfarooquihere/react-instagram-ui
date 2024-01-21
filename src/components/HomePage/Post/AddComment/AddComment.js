@@ -5,7 +5,7 @@ import { emoji } from "../../../../ui/svg/HomePage";
 import Emoji from "../../../../ui/Emoji/Emoji";
 function AddComment(props) {
   const dispatch = useDispatch();
-  const { Action, Obj } = props;
+  const { tempState, setTempState, Action, Obj } = props;
   const [commentPresent, setCommentPresent] = useState("");
   const [showEmoji, setShowEmoji] = useState(false);
 
@@ -18,6 +18,14 @@ function AddComment(props) {
       likes: 0,
       selfLike: false,
     };
+
+    if(tempState) {
+      let ob = {...tempState};
+      let cmt = [...ob.commentsArr]
+      cmt.unshift(commentObj)
+      ob.commentsArr = cmt;
+      setTempState({...ob});
+    }
     dispatch(Action.addComment({Obj, commentObj}));
     setCommentPresent("");
   };

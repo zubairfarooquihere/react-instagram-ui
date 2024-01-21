@@ -13,11 +13,16 @@ import {
 } from "../../../ui/svg/HomePage";
 function ActionButtons(props) {
   const dispatch = useDispatch();
-  const { ExploreObj, showCmtModal } = props;
+  const { tempState, setTempState, ExploreObj, showCmtModal } = props;
   
   const like = useSelector((state) => state.ExploreObjects.ExploreObjects[ExploreObj.mainObjId][ExploreObj.id].selfLikes);
   
   const likeFunc = () => {
+    let ob = {...tempState};
+    ob.likes = !like ? ob.likes + 1 : ob.likes - 1;
+    ob.selfLikes = !like;
+    setTempState({...ob});
+    
     dispatch(ExploreObjectsActions.postLike({ExploreObj, like: !like}));
   };
   

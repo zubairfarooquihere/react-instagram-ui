@@ -5,15 +5,18 @@ import classes from "./ExporeContext.module.scss";
 import Picture from "../Picture/Picture";
 
 function ExporeContext(props) {
-  const { id, gifPosition } = props;
+  const { id, gifPosition, ExporeContextIndex } = props;
+  
   const ExploreObj = useSelector(
     (state) => state.ExploreObjects.ExploreObjects[id]
   );
-  const Images = ExploreObj.subObjArr.map((id) => {
+
+  const Images = ExploreObj.subObjArr.map((id, index) => {
     if (ExploreObj[id].type === "Image") {
       return (
         <Picture
           key={id}
+          index={ExporeContextIndex+''+index}
           ExploreObj={ExploreObj[id]}
           url={`https://picsum.photos/${ExploreObj[id].img}/${ExploreObj[id].img}`}
         />
@@ -23,6 +26,7 @@ function ExporeContext(props) {
         <div key={'gif'+id} style={{ ...gifPosition }} className={classes.block}>
           <Picture
             key={id}
+            index={ExporeContextIndex+''+index}
             ExploreObj={ExploreObj[id]}
             url={ExploreObj[id]['img']}
           />
