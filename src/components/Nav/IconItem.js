@@ -108,21 +108,44 @@ function IconItem(props) {
         }
       }}
     >
-      <span id={wrapper}>
-        <NavLink
-          className={classes.NavLink}
-          style={{ textDecoration: "none", color: 'none', backgroundColor: 'none' }}
-          to={path}
-        >
-          <span id={svgId} className={classes.list__svg}>
-            {svg}
+      {/* <span id={wrapper}> */}
+      {path ? (
+        <>
+          <NavLink
+            className={classes.NavLink}
+            style={{
+              textDecoration: "none",
+              color: "none",
+              backgroundColor: "none",
+            }}
+            to={path}
+          >
+            <span id={wrapper}>
+              <span id={svgId} className={classes.list__svg}>
+                {svg}
+              </span>
+              <p id={svgSelectedId} className={`${classes.list__svgSelected} `}>
+                {svgSelect}
+              </p>
+            </span>
+            <span className={classes.list__text}>{title}</span>
+          </NavLink>
+        </>
+      ) : (
+        <>
+          <span id={wrapper}>
+            <span id={svgId} className={classes.list__svg}>
+              {svg}
+            </span>
+            <p id={svgSelectedId} className={`${classes.list__svgSelected} `}>
+              {svgSelect}
+            </p>
           </span>
-          <p id={svgSelectedId} className={`${classes.list__svgSelected} `}>
-            {svgSelect}
-          </p>
-        </NavLink>
-      </span>
-      <span className={classes.list__text}>{title}</span>
+          <span className={classes.list__text}>{title}</span>
+        </>
+      )}
+      {/* </span> */}
+      {/* <span className={classes.list__text}>{title}</span> */}
     </motion.li>
   );
 }

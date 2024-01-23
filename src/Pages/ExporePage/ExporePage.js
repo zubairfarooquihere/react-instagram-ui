@@ -10,6 +10,7 @@ let scrollGlobal = 0;
 
 function ExporePage() {
   const dispatch = useDispatch();
+  const weninfo = useSelector((state) => state.weninfo);
   const [loading, setLoading] = useState(false);
   const myRef = useRef();
   const ExploreObjectsArr = useSelector(
@@ -39,17 +40,20 @@ function ExporePage() {
   }
 
   // callback for the top 8 GIFs of search
-  const tenorCallback_search = useCallback(async (responsetext) => {
-    // parse the json response
-    var response_objects = JSON.parse(responsetext);
+  const tenorCallback_search = useCallback(
+    async (responsetext) => {
+      // parse the json response
+      var response_objects = JSON.parse(responsetext);
 
-    let top_10_gifs = response_objects["results"];
-    //console.log(top_10_gifs[0]["media"][0]["mediumgif"]["url"]);
-    //setGifArr(top_10_gifs);
-    dispatch(fetchExploreData(top_10_gifs));
+      let top_10_gifs = response_objects["results"];
+      //console.log(top_10_gifs[0]["media"][0]["mediumgif"]["url"]);
+      //setGifArr(top_10_gifs);
+      dispatch(fetchExploreData(top_10_gifs));
 
-    return top_10_gifs;
-  }, [dispatch]);
+      return top_10_gifs;
+    },
+    [dispatch]
+  );
 
   // function to call the trending and category endpoints
   const grab_data = useCallback(async () => {
@@ -93,10 +97,7 @@ function ExporePage() {
       await grab_data();
     };
 
-    if (
-      scrollGlobal === 0 &&
-      length === 0
-    ) {
+    if (scrollGlobal === 0 && length === 0) {
       Asyncgetdata();
     } else {
       window.scrollTo({ top: scrollGlobal, behavior: "instant" });
@@ -122,7 +123,7 @@ function ExporePage() {
 
   return (
     <div
-      // data-theme={weninfo.darkMode ? "dark" : "light"}
+      data-theme={weninfo.darkMode ? "dark" : "light"}
       className={classes.explorepage}
     >
       {ExploreObjectsArr.map((id, index) => {

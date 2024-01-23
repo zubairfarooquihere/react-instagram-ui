@@ -32,7 +32,7 @@ export const fetchExploreData = (gifArr) => {
             mainObjId: obj.id,
             type: i === createSubObjs-1 ? "Gif" : "Image",
             commentsArr: commentsArr[i],
-            img: i === createSubObjs-1 ? gifArr[j]['media'][0]['mediumgif']['url'] : 250 + i + getRandomInteger(0, 30),
+            img: i === createSubObjs-1 ? gifArr[j]['media'][0]['mediumgif']['url'] : 750 + i + getRandomInteger(0, 30),
             likes: likesArr[i],
             selfLikes: false,
           };

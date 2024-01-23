@@ -25,14 +25,14 @@ import { useSelector } from "react-redux";
 import classes from "./IconList.module.scss";
 
 const IconItemList = [
-  { svg: home, svgSelect: homeSelect, title: "Home" },
-  { svg: search, svgSelect: searchSelect, title: "Search" },
+  { svg: home, svgSelect: homeSelect, title: "Home", path: '/' },
+  { svg: search, svgSelect: searchSelect, title: "Search", path: null },
   { svg: explore, svgSelect: exploreSelect, title: "Explore", path: '/explore' },
-  { svg: reel, svgSelect: reelSelect, title: "Reel" },
-  { svg: messages, svgSelect: messagesSelect, title: "Messages" },
-  { svg: notification, svgSelect: notificationSelect, title: "Notifications" },
-  { svg: create, svgSelect: create, title: "Create" },
-  { svg: profile, svgSelect: profileSelected, title: "Profile" },
+  { svg: reel, svgSelect: reelSelect, title: "Reel", path: '/reel' },
+  { svg: messages, svgSelect: messagesSelect, title: "Messages", path: null },
+  { svg: notification, svgSelect: notificationSelect, title: "Notifications", path: null },
+  { svg: create, svgSelect: create, title: "Create", path: null },
+  { svg: profile, svgSelect: profileSelected, title: "Profile", path: null },
 ];
 
 let letSelectedSvgId = "";
