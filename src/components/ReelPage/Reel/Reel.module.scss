@@ -1,10 +1,11 @@
 .reel {
+  display: flex;
   cursor: pointer;
   border-radius: 3px;
   overflow: hidden;
   position: relative;
   height: 100%;
-  width: 100%;
+  width: 416px;
 
   img {
     height: 100%;
@@ -13,14 +14,65 @@
   }
 }
 
+.details {
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
+  width: 60px;
+  background-color: white;
+  //border: 1px solid black;
+
+  &__action {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 13px 0;
+
+    &--btn {
+      margin-bottom: -2px;
+      svg {
+
+      }
+    }
+
+    &--info {
+      color: rgb(48, 48, 48);
+      font-size: 13px;
+    }
+
+    &--img {
+      border: 1.5px solid black;
+      overflow: hidden;
+      border-radius: 5px;
+      height: 25px;
+      width: 25px;
+
+      img {
+        height: 100%;
+        width: 100%;
+        object-fit: fill;
+      }
+    }
+
+    &:hover {
+      color: #6d6d6d;
+    }
+  }
+}
+
 .profile {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 350px;
   height: 140px;
   background-color: transparent;
   color: white;
-  padding:  0 0 0 17px;
+  padding: 0 0 0 17px;
 
   &__header {
     display: flex;

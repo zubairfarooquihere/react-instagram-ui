@@ -1,12 +1,13 @@
 import React from "react";
 import classes from "./Reel.module.scss";
+import { Like, LikeActive,Comment, Share, Save, More } from "../../../ui/svg/HomePage";
 import { useSelector } from "react-redux";
+import { motion } from "framer-motion";
 function Reel(props) {
   const { reelId } = props;
   const reelObj = useSelector(
     (state) => state.ReelsObjects.ReelsObjects[reelId]
   );
-  //console.log(reelObj);
   const svg = (
     <svg
       aria-label="Audio image"
@@ -23,14 +24,14 @@ function Reel(props) {
   );
   return (
     <div className={classes.reel}>
-      <img src={reelObj ? reelObj.gif: ''} alt="" />
+      <img src={reelObj ? reelObj.gif : ""} alt="" />
       <div className={classes.profile}>
         <header className={classes.profile__header}>
           <span className={classes["profile__header--img"]}>
-            <img src={reelObj ? reelObj.profileImg: ''} alt="" />
+            <img src={reelObj ? reelObj.profileImg : ""} alt="" />
           </span>
           <span className={classes["profile__header--name"]}>
-            {reelObj ? reelObj.name : ''}
+            {reelObj ? reelObj.name : ""}
           </span>
           <span className={classes["profile__header--button"]}>
             <span>•</span>
@@ -38,11 +39,41 @@ function Reel(props) {
           </span>
         </header>
         <main className={classes.profile__caption}>
-          {reelObj ? reelObj.caption : ''}
+          {reelObj ? reelObj.caption : ""}
         </main>
         <footer className={classes.profile__footer}>
           {svg} Danger Twins · Thing of Beauty
         </footer>
+      </div>
+      <div className={classes.details}>
+        <div className={classes.details__action}>
+          {true && <span className={classes["details__action--btn"]}>{Like}</span>}
+          {false && <motion.span initial={{ scale: 1.15 }}
+            animate={{ scale: 1 }}
+            transition={{
+              type: "spring",
+              stiffness: 200,
+            }} className={classes["details__action--btn"]}>{LikeActive}</motion.span>}
+          <span className={classes["details__action--info"]}>{reelObj ? reelObj.likes : ""}</span>
+        </div>
+        <div className={classes.details__action}>
+          <span className={classes["details__action--btn"]}>{Comment}</span>
+          <span className={classes["details__action--info"]}>{reelObj ? reelObj.commentsArr.length : ""}</span>
+        </div>
+        <div className={classes.details__action}>
+          <span className={classes["details__action--btn"]}>{Share}</span>
+        </div>
+        <div className={classes.details__action}>
+          <span className={classes["details__action--btn"]}>{Save}</span>
+        </div>
+        <div className={classes.details__action}>
+          <span className={classes["details__action--btn"]}>{More}</span>
+        </div>
+        <div className={classes.details__action}>
+          <span className={classes["details__action--img"]}>
+            <img src={reelObj ? reelObj.profileImg : ""} alt="" />
+          </span>
+        </div>
       </div>
     </div>
   );

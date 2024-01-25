@@ -29,7 +29,7 @@ const IconItemList = [
   { svg: search, svgSelect: searchSelect, title: "Search", path: null },
   { svg: explore, svgSelect: exploreSelect, title: "Explore", path: '/explore' },
   { svg: reel, svgSelect: reelSelect, title: "Reel", path: '/reel' },
-  { svg: messages, svgSelect: messagesSelect, title: "Messages", path: null },
+  { svg: messages, svgSelect: messagesSelect, title: "Messages", path: '/messages' },
   { svg: notification, svgSelect: notificationSelect, title: "Notifications", path: null },
   { svg: create, svgSelect: create, title: "Create", path: null },
   { svg: profile, svgSelect: profileSelected, title: "Profile", path: null },

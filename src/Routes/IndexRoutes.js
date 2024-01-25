@@ -6,6 +6,7 @@ import RouteLayout from '../RouteLayout/RouteLayout';
 import HomePage from '../Pages/HomePage/HomePage'
 import ExporePage from "../Pages/ExporePage/ExporePage";
 import ReelPage from "../Pages/ReelPage/ReelPage";
+import MessagesPage from "../Pages/MessagesPage/MessagesPage";
 
 const router = createBrowserRouter([
   {
@@ -16,6 +17,7 @@ const router = createBrowserRouter([
       { index: true, element: <HomePage /> },
       { path: '/explore', element: <ExporePage /> },
       { path: '/reel', element: <ReelPage /> },
+      { path: '/messages', element: <MessagesPage /> },
     ],
   },
 ]);

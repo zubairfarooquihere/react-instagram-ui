@@ -7,9 +7,23 @@
     position: absolute;
     left: 50%;
     height: 639px;
-    width: 356px;
+    width: 416px; //356px 60
     border-radius: 5px;
     transform: translate(-50%, -50%);
+  }
+}
+
+.newReelBtn {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+
+  &__top {
+    height: 50%;
+  }
+
+  &__bottom {
+    height: 50%;
   }
 }
 

@@ -1,0 +1,93 @@
+@import "../../../index.scss";
+
+.MessageList {
+  width: 39rem;
+  height: 98vh;
+  border-right: 0.5px solid #dfdfdf;
+  z-index: 1;
+
+  @include respond(tab-port) {
+    left: 0;
+    width: 11rem;
+
+    ::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+
+    /* For Firefox */
+    * {
+      scrollbar-width: none;
+    }
+  }
+
+  &__header {
+    height: 15%;
+    width: 100%;
+    padding-top: 3rem;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+
+    @include respond(tab-port) {
+      height: 10%;
+      padding-top: 0rem;
+    }
+
+    &--one {
+      display: flex;
+      width: 90%;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto 2rem auto;
+      font-weight: bolder;
+
+      @include respond(tab-port) {
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+      }
+
+      p {
+        cursor: pointer;
+        font-size: 2.3rem;
+        font-weight: 600;
+
+        @include respond(tab-port) {
+          display: none;
+        }
+      }
+
+      svg {
+        cursor: pointer;
+      }
+    }
+
+    &--two {
+      display: flex;
+      width: 90%;
+      align-items: center;
+      justify-content: space-between;
+      margin: 0 auto 3rem auto;
+
+      @include respond(tab-port) {
+        display: none;
+      }
+
+      p {
+        cursor: pointer;
+        font-size: 1.6rem;
+        font-weight: 550;
+      }
+    }
+  }
+
+  &__list {
+    margin-top: 1rem;
+    width: 100.1%; //to hide the gray border
+    height: 85%;
+    //padding-left: 0.5rem;
+    overflow-y: scroll;
+
+    @include respond(phone) {
+      padding-left: 0rem;
+    }
+  }
+}
