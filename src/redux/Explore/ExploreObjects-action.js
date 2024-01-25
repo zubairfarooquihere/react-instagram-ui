@@ -43,8 +43,6 @@ export const fetchExploreData = (gifArr) => {
             [id]: {...subObj},
           };
         }
-        // console.log("obj");
-        //console.log(obj);
         arr.push(obj);
       }
       return arr;

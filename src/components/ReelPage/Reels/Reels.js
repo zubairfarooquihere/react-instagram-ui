@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import classes from "./Reels.module.scss";
 import { animate } from "framer-motion";
 import Reel from "../Reel/Reel";
-function Reels() {
+function Reels(props) {
+  const { ReelsObjectsArr } = props;
+  const divId = ["reel10", "reel1", "reel2", "reel4"];
   const [reelInfo, setReelInfo] = useState({
     reelTop: { id: "reel1", show: false },
     reelCenter: { id: "reel2", show: true },
@@ -32,7 +34,7 @@ function Reels() {
     animatePlaceReel(overflowR.id, bottomPos);
     animatePlaceReel(topR.id, overFlowPos.up);
     animatePlaceReel(topR.id, { opacity: 0 });
-    animate("#" + classes[overflowR.id], { opacity: 1 }, { delay: '0.2' });
+    animate("#" + classes[overflowR.id], { opacity: 1 }, { delay: "0.2" });
 
     setReelInfo({
       reelTop: { id: centerR.id },
@@ -42,21 +44,28 @@ function Reels() {
     });
   };
 
+  // const render = divId.map((dID, index)=>{
+  //   return (
+  //     <div key={dID} id={classes[dID]} className={classes.reels__reel}>
+  //       <Reel key={ReelsObjectsArr[index]+' reel'} reelId={ReelsObjectsArr[index]} />
+  //     </div>
+  //   );
+  // })
+
   return (
     <div onClick={showNewReel} className={classes.reels}>
-      <div id={classes.reel10} className={classes.reels__reel}>
-        <Reel />
+      {/* {render} */}
+      <div key={divId[0]} id={classes[divId[0]]} className={classes.reels__reel}>
+        <Reel key={ReelsObjectsArr[0]+' reel'} reelId={ReelsObjectsArr[0]} />
       </div>
-      <div id={classes.reel1} className={classes.reels__reel}>
-        <Reel />
+      <div key={divId[1]} id={classes[divId[1]]} className={classes.reels__reel}>
+        <Reel key={ReelsObjectsArr[1]+' reel'} reelId={ReelsObjectsArr[1]} />
       </div>
-
-      <div id={classes.reel2} className={classes.reels__reel}>
-        <Reel />
+      <div key={divId[2]} id={classes[divId[2]]} className={classes.reels__reel}>
+        <Reel key={ReelsObjectsArr[2]+' reel'} reelId={ReelsObjectsArr[2]} />
       </div>
-
-      <div id={classes.reel4} className={classes.reels__reel}>
-        <Reel />
+      <div key={divId[3]} id={classes[divId[3]]} className={classes.reels__reel}>
+        <Reel key={ReelsObjectsArr[3]+' reel'} reelId={ReelsObjectsArr[3]} />
       </div>
     </div>
   );
