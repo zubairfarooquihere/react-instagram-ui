@@ -6,10 +6,11 @@ import { fetchReelsData } from "../../redux/Reels/ReelsObjects-action";
 import { useDispatch, useSelector } from "react-redux";
 function ReelPage() {
   const dispatch = useDispatch();
+  const weninfo = useSelector((state) => state.weninfo);
   const ReelsObjectsArr = useSelector(
     (state) => state.ReelsObjects.ReelsObjectsArr
   );
-  console.log(ReelsObjectsArr);
+  //console.log(ReelsObjectsArr);
   function httpGetAsync(theUrl, callback) {
     // create the request object
     var xmlHttp = new XMLHttpRequest();
@@ -49,7 +50,7 @@ function ReelPage() {
   const grab_data = useCallback(async () => {
     // set the apikey and limit
     var apikey = "LIVDSRZULELA";
-    var lmt = 10;
+    var lmt = 35;
 
     const list = [
       "Pokemon",
@@ -80,8 +81,10 @@ function ReelPage() {
 
   useEffect(() => {
     const Asyncgetdata = async () => {
-      console.log('sa');
-      await grab_data();
+      if(ReelsObjectsArr.length === 0){
+        //console.log('sa');
+        await grab_data();
+      }
     };
     Asyncgetdata();
     // if (scrollGlobal === 0 && length === 0) {
@@ -106,10 +109,10 @@ function ReelPage() {
     return () => {
       //window.removeEventListener("scroll", handleScroll);
     };
-  }, [dispatch, grab_data]);
+  }, [dispatch, grab_data, ReelsObjectsArr]);
   return (
-    <div className={classes.reelPage}>
-      <Reels ReelsObjectsArr={ReelsObjectsArr} />
+    <div data-theme={weninfo.darkMode ? "dark" : "light"} className={classes.reelPage}>
+      {ReelsObjectsArr.length !== 0 && <Reels ReelsObjectsArr={ReelsObjectsArr} />}
     </div>
   )
 }

@@ -29,7 +29,6 @@ const PostObjects = createSlice({
     },
     addComment(state, action) {
       const { Obj, commentObj } = action.payload;
-      console.log(action.payload);
       const { id } = Obj;
       state.PostObjects[id].commentsArr.unshift(commentObj);
     },
