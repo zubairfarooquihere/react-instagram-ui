@@ -1,0 +1,337 @@
+@import "../../../index.scss";
+
+#info {
+  //position: relative;
+  background-color: red;
+}
+
+.messagePage {
+  height: 99.5vh;
+  width: 73%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  @include respond(tab-port) {
+    width: 90%;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 25rem;
+
+    h3 {
+      font-weight: 500;
+      font-size: 2rem;
+      margin-bottom: -1.3rem;
+    }
+
+    p {
+      font-size: 1.35rem;
+      color: #808080;
+    }
+  }
+}
+
+.messageLayout {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid rgb(231, 231, 231);
+    width: 100%;
+    height: 7rem;
+
+    &__one {
+      //background-color: #0095f6;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      width: 35%;
+
+      &--imageHolder {
+        height: 100%;
+        width: 7rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          cursor: pointer;
+          height: 4rem;
+          width: 4rem;
+          object-fit: fill;
+          border-radius: 100%;
+        }
+      }
+
+      &--name {
+        cursor: pointer;
+        font-weight: 600;
+        font-size: 1.85rem;
+      }
+    }
+
+    &__two {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 100%;
+      width: 11rem;
+      margin-right: 1rem;
+
+      &--info {
+        position: relative;
+      }
+
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    height: 77%; /* Ensure parent containers have a defined height */
+    padding: 1rem 1.75rem 0;
+    overflow-y: scroll;
+
+    &--send {
+      align-self: flex-end; /* Aligns the element to the right */
+      justify-self: flex-end;
+      background-color: #3797f0;
+      margin-bottom: 0.3rem;
+      color: white;
+      position: relative;
+
+      &--reaction {
+        cursor: pointer;
+        z-index: 3;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        background-color: #efefef;
+        border-color: white;
+        position: absolute;
+        right: 0.5rem;
+        bottom: -1.25rem;
+        border-radius: 3rem;
+        height: 2rem;
+        width: 3rem;
+
+        span {
+          font-size: 1.2rem;
+        }
+      }
+
+      &.emoji {
+        font-size: 5rem;
+        background-color: transparent;
+        padding: 0;
+      }
+    }
+
+    &--recieve {
+      position: relative;
+      align-self: flex-start; /* Aligns the element to the right */
+      background-color: #efefef;
+      margin-bottom: 0.3rem;
+      color: black;
+    }
+  }
+
+  &__textboxdiv {
+    margin-top: 1rem;
+    min-height: 9rem;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+  }
+
+  &__textbox {
+    width: 97%;
+    height: 4.5rem;
+    border: 1px solid rgb(207, 207, 207);
+    //background-color: palegoldenrod;
+    border-radius: 15rem;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding: 0rem 1.5rem 0 1rem;
+
+    @include respond(tab-port) {
+      margin: 2rem auto;
+    }
+
+    &--one {
+      height: 100%;
+      width: 90%;
+      display: flex;
+      align-items: center;
+
+      &__svg {
+        position: relative;
+      }
+
+      &--emoji {
+        position: relative;
+        cursor: pointer;
+      }
+
+      &__text {
+        height: 100%;
+        width: 100%;
+        display: flex;
+        align-items: center;
+
+        textarea {
+          padding: 1.3rem 0 0 1.3rem;
+          color: var(--black-color);
+          height: 95%;
+          width: 100%;
+          outline: none;
+          resize: none;
+          border: none;
+          background-color: transparent;
+          font-size: 1.5rem;
+          line-height: 1.7rem;
+          font-family: Arial, Helvetica, sans-serif;
+
+          &::placeholder {
+            color: #bebebe;
+          }
+        }
+      }
+    }
+
+    &--two {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 100%;
+      width: 11rem;
+
+      svg {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.btn {
+  cursor: pointer;
+  background-color: #0095f6;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 550;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 13rem;
+  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+
+  &:hover {
+    background-color: #0071bc;
+  }
+}
+
+.sendBtn {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #3386d9;
+  margin-left: 9rem;
+}
+
+.msgBlock {
+  max-width: 50rem;
+  word-wrap: break-word;
+
+  font-size: 1.5rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 1.75rem;
+
+  @include respond(tab-port) {
+    font-size: 1.85rem;
+  }
+
+  @include respond(phone) {
+    font-size: 1.85rem;
+    max-width: 27rem;
+  }
+}
+
+.Boxreaction {
+  opacity: 1;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  border-color: white;
+  position: absolute;
+  //left: -7rem;
+  bottom: 50%;
+  width: 11rem;
+  transform: translate(-50%, 50%);
+  //background-color: #0071bc;
+
+  &:hover {
+    opacity: 1;
+  }
+
+  svg {
+    cursor: pointer;
+    fill: #bdbdbd;
+
+    &:hover {
+      fill: #959595;
+    }
+  }
+}
+
+.repliedTo {
+  align-self: flex-end; /* Aligns the element to the right */
+  justify-self: flex-end;
+  background-color: transparent;
+  font-size: 1.2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.7rem;
+  color: #8b8b8b;
+
+  &__message {
+    max-width: 45rem;
+    text-overflow: ellipsis;
+    background-color: #efefef;
+    color: rgb(45, 45, 45);
+
+    font-size: 1.5rem;
+    padding: 0.7rem 1rem;
+    margin-right: 1.3rem;
+    border-radius: 1.5rem;
+
+    &::after {
+      content: '';
+      height: 100%;
+      width: 0.35rem;
+      border-radius: 15rem;
+      background-color: #f5f1f1;
+      position: absolute;
+      right: 0;
+      top: 0;
+      transform: translateX(300%);
+    }
+  }
+}

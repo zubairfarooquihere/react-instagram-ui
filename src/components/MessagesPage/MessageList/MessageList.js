@@ -1,29 +1,12 @@
-import React,{ useState } from "react";
+import React, { useState } from "react";
 
 import classes from "./MessageList.module.scss";
 
 import MessagePost from "./MessagePost/MessagePost";
 
-const catBreeds = [
-  "Abyssinian",
-  "Bengal",
-  "British Shorthair",
-  "Maine Coon",
-  "Persian",
-  "Ragdoll",
-  "Russian Blue",
-  "Siamese",
-  "Sphynx",
-  "Abyssinian",
-  "Bengal",
-  "British Shorthair",
-  "Maine Coon",
-  "Persian",
-  "Ragdoll",
-];
-
 function MessageList(props) {
-  const [selected, setSelected] = useState('');
+  const { catBreeds } = props;
+  const [selected, setSelected] = useState("");
 
   return (
     <div className={classes.MessageList}>
@@ -70,20 +53,20 @@ function MessageList(props) {
           </svg>
         </div>
         <div className={classes["MessageList__header--two"]}>
-          <p style={{fontWeight: '650'}}>Messages</p>
+          <p style={{ fontWeight: "650" }}>Messages</p>
           <p style={{ color: "#737373" }}>Requests</p>
         </div>
       </div>
       <div className={classes.MessageList__list}>
         {catBreeds.map((breedName, index) => {
-          let addclass = '';
-          if(index === selected){
-            addclass = 'selected';
+          let addclass = "";
+          if (index === selected) {
+            addclass = "selected";
           }
           return (
             <MessagePost
               onClick={(breedName, url, id) => {
-                props.showMessage(breedName, url);
+                props.showMessage(breedName, url, index);
                 setSelected(id);
               }}
               addClass={addclass}

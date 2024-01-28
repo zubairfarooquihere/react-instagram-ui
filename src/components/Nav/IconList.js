@@ -74,6 +74,7 @@ function IconList(props) {
 
   const animateShowHideText = useCallback(
     (hideToggleListItem) => {
+      hideToggleListItem = weninfo.short === true && !(window.innerWidth <= weninfo.minOuterNav) ? true : hideToggleListItem;
       animateInnerNav(hideToggleListItem);
       if (hideToggleListItem) {
         //Text in front of svg
@@ -84,7 +85,7 @@ function IconList(props) {
         });
       }
     },
-    [animateInnerNav, animate, weninfo.minOuterNav]
+    [animateInnerNav, animate, weninfo.minOuterNav, weninfo.short]
   );
 
   const controlSearchSlider = () => {

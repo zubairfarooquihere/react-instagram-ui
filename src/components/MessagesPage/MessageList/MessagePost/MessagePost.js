@@ -3,9 +3,10 @@ import React from "react";
 import classes from "./MessagePost.module.scss";
 
 function MessagePost(props) {
-  const { addClass } = props;
+  const { addClass, id } = props;
   return (
     <div
+    key={id}
       onClick={() => {
         props.onClick(props.name, props.url, props.id);
       }}

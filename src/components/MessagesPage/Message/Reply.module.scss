@@ -1,0 +1,31 @@
+.replybox {
+    border-top: 1px solid rgb(225, 222, 222);
+    height: 6.5rem;
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    padding: .5rem 0 0 1.5rem;
+    //align-items: center;
+
+    &--one {
+      display: flex;
+      justify-content: space-between;
+      width: 97%;
+      font-size: 1.4rem;
+
+      span {
+        cursor: pointer;
+      }
+    }
+
+    &--two {
+      width: 40%;
+      text-overflow: ellipsis;
+      height: 2rem;
+      margin-top: 0.3rem;
+      overflow-x: hidden;
+      font-size: 1.25rem;
+      color: #b7b9be;
+    }
+  }

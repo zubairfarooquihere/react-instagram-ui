@@ -1,0 +1,213 @@
+@import "../../../index.scss";
+
+.onerow {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 3.75rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  width: 47rem;
+  border-left: 1px solid rgb(216, 216, 216);
+
+  @include respond(tab-land) {
+    width: 45rem;
+  }
+
+  @include respond(tab-port) {
+    width: 39rem;
+  }
+
+  &__boxLayout {
+    min-width: 83%;
+    margin: 0 auto;
+
+    h3 {
+      margin-top: 2.5rem;
+      font-size: 2rem;
+      font-weight: 550;
+    }
+
+    p {
+      font-size: 1.6rem;
+      font-weight: 500;
+    }
+
+    &--lineBreak {
+      width: 100%;
+      border-bottom: 1px solid rgb(216, 216, 216);
+      margin-top: 2.85rem;
+    }
+
+    &--lineBreak--2 {
+      margin-top: 30rem;
+
+      @include respond(tab-land) {
+        margin-top: 37rem;
+      }
+
+      @include respond(tab-port) {
+        margin-top: 44.5rem;
+      }
+    }
+
+    h2 {
+      margin-top: 2.5rem;
+      font-size: 1.5rem;
+      font-weight: 550;
+    }
+
+    &__profile {
+      display: flex;
+      margin-top: 1.5rem;
+
+      &--imageHolder {
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+          cursor: pointer;
+          height: 5.5rem;
+          width: 5.5rem;
+          object-fit: fill;
+          border-radius: 100%;
+        }
+      }
+
+      &--name {
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-left: 1.3rem;
+        font-weight: 600;
+        font-size: 1.85rem;
+        max-width: 100%;
+
+        span {
+          font-size: 1.5rem;
+        }
+
+        p {
+          font-size: 1.3rem;
+          color: #848484;
+        }
+      }
+    }
+
+    &__btnsection {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      height: 90%;
+      color: #ed4e5a;
+      font-weight: 400;
+      margin: auto auto;
+      font-size: 1.6rem;
+      margin-top: 0;
+
+      @include respond(tab-land) {
+        height: 80%;
+      }
+
+      @include respond(tab-port) {
+        height: 15%;
+      }
+
+      span {
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.switch {
+  font-size: 17px;
+  position: relative;
+  display: inline-block;
+  width: 4rem;
+  height: 2.5rem;
+  
+  @include respond(tab-port) {
+    width: 4.5rem;
+  }
+}
+
+/* Hide default HTML checkbox */
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* The slider */
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background-color: #dbdfe4;
+  border-radius: 50px;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  right: 0.3em;
+  bottom: 0.3em;
+  transform: translateX(150%);
+  background-color: #59d102;
+  border-radius: inherit;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+
+  @include respond(tab-port) {
+    height: 1em;
+    width: 1em;
+  }
+}
+
+.slider:after {
+  position: absolute;
+  content: "";
+  height: 1.15em;
+  width: 1.15em;
+  left: 0.15em;
+  top: 0.15em;
+  background-color: #ffffff;
+  border-radius: inherit;
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  
+  @include respond(tab-port) {
+    top: 0.2em;
+    height: 0.8em;
+    width: 0.8em;
+  }  
+}
+
+.switch input:checked + .slider {
+  background-color: black;
+}
+
+.switch input:not(:checked) + .slider {
+  background-color: #dbdfe4;
+}
+
+.switch input:focus + .slider {
+  box-shadow: 0 0 1px #59d102;
+}
+
+.switch input:checked + .slider::after {
+  transform: translateX(70%);
+
+  @include respond(tab-port) {
+    transform: translateX(110%);
+  }
+}

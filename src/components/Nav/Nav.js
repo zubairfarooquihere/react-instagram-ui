@@ -125,13 +125,14 @@ function Nav() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (weninfo.minOuterNav < window.innerWidth) {
+      if (weninfo.short === false && weninfo.minOuterNav < window.innerWidth) {
         animateOuterNav(false);
         animateBottomNav(false);
         dispatch(webinfoActions.resize(weninfo.minOuterNav + 1));
       } else if (
-        weninfo.minOuterNav >= window.innerWidth &&
-        window.innerWidth > weninfo.minBottomNav
+        (weninfo.short === true && window.innerWidth > weninfo.minBottomNav) || 
+        (weninfo.minOuterNav >= window.innerWidth &&
+        window.innerWidth > weninfo.minBottomNav)
       ) {
         animateOuterNav(true);
         animateBottomNav(false, 'second');
@@ -153,6 +154,7 @@ function Nav() {
     dispatch,
     weninfo.minOuterNav,
     weninfo.minBottomNav,
+    weninfo.short,
     animate,
     animateBottomNav,
   ]);

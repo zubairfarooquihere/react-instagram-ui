@@ -10,7 +10,6 @@ function ReelPage() {
   const ReelsObjectsArr = useSelector(
     (state) => state.ReelsObjects.ReelsObjectsArr
   );
-  //console.log(ReelsObjectsArr);
   function httpGetAsync(theUrl, callback) {
     // create the request object
     var xmlHttp = new XMLHttpRequest();
@@ -82,33 +81,10 @@ function ReelPage() {
   useEffect(() => {
     const Asyncgetdata = async () => {
       if(ReelsObjectsArr.length === 0){
-        //console.log('sa');
         await grab_data();
       }
     };
     Asyncgetdata();
-    // if (scrollGlobal === 0 && length === 0) {
-    //   Asyncgetdata();
-    // } else {
-    //   window.scrollTo({ top: scrollGlobal, behavior: "instant" });
-    // }
-
-    // const observer = new IntersectionObserver((entries, observer) => {
-    //   const entry = entries[0];
-    //   if (entry.isIntersecting) {
-    //     //setLoading(true);
-    //     setTimeout(() => {
-    //       //setLoading(false);
-    //       Asyncgetdata();
-    //     }, 2300);
-    //   }
-    // });
-    // observer.observe(myRef.current);
-    // setLoading(false);
-
-    return () => {
-      //window.removeEventListener("scroll", handleScroll);
-    };
   }, [dispatch, grab_data, ReelsObjectsArr]);
   return (
     <div data-theme={weninfo.darkMode ? "dark" : "light"} className={classes.reelPage}>
