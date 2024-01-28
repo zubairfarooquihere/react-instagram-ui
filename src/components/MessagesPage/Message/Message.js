@@ -182,7 +182,6 @@ function Message(props) {
                   });
                 }}
                 className={classes["messageLayout__header__two--info"]}
-                style={{ color: "black" }}
               >
                 {!showInfo && info}
                 {showInfo && blackInfo}

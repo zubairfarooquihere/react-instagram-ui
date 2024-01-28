@@ -32,7 +32,7 @@ const IconItemList = [
   { svg: messages, svgSelect: messagesSelect, title: "Messages", path: '/messages' },
   { svg: notification, svgSelect: notificationSelect, title: "Notifications", path: null },
   { svg: create, svgSelect: create, title: "Create", path: null },
-  { svg: profile, svgSelect: profileSelected, title: "Profile", path: null },
+  { svg: profile, svgSelect: profileSelected, title: "Profile", path: '/profile' },
 ];
 
 let letSelectedSvgId = "";

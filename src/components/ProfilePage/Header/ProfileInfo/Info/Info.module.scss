@@ -1,0 +1,76 @@
+.Info {
+  display: flex;
+  flex-direction: column;
+  //width: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+
+  span,
+  button {
+    margin-right: 17px;
+  }
+
+  &__name {
+    cursor: pointer;
+    font-size: 18px;
+  }
+
+  &__button {
+    cursor: pointer;
+    background-color: #efefef;
+    font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 550;
+    padding: 7.5px 13px;
+
+    &--editbtn {
+      margin-right: 7px !important;
+    }
+
+    &:hover {
+      background-color: #dadada;
+    }
+  }
+
+  &__svg {
+    cursor: pointer;
+  }
+}
+
+.main {
+  margin-top: 25px;
+  display: flex;
+  align-items: center;
+
+  &__details {
+    margin-right: 30px;
+    font-size: 15.5px;
+  }
+
+  &__number {
+    font-weight: 550;
+  }
+
+  &__posts {
+  }
+
+  &__followers {
+  }
+
+  &__following {
+  }
+}
+
+.footer {
+    margin-top: 20px;
+
+    &__name {
+        font-size: 15px;
+        font-weight: 550;
+    }
+}

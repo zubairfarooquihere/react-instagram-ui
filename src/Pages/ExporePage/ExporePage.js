@@ -16,8 +16,6 @@ function ExporePage() {
   const ExploreObjectsArr = useSelector(
     (state) => state.ExploreObjects.ExploreObjectsArr
   );
-  //console.log(ExploreObjectsArr);
-  //const [gifArr, setGifArr] = useState([]);
   function httpGetAsync(theUrl, callback) {
     // create the request object
     var xmlHttp = new XMLHttpRequest();
