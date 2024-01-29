@@ -115,3 +115,80 @@ export const Posts = (
     ></line>
   </svg>
 );
+
+export const camera = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    fill="currentColor"
+    class="bi bi-camera"
+    viewBox="0 0 16 16"
+  >
+    {" "}
+    <path d="M15 12a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h1.172a3 3 0 0 0 2.12-.879l.83-.828A1 1 0 0 1 6.827 3h2.344a1 1 0 0 1 .707.293l.828.828A3 3 0 0 0 12.828 5H14a1 1 0 0 1 1 1v6zM2 4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2h-1.172a2 2 0 0 1-1.414-.586l-.828-.828A2 2 0 0 0 9.172 2H6.828a2 2 0 0 0-1.414.586l-.828.828A2 2 0 0 1 3.172 4H2z" />{" "}
+    <path d="M8 11a2.5 2.5 0 1 1 0-5 2.5 2.5 0 0 1 0 5zm0 1a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7zM3 6.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0z" />{" "}
+  </svg>
+);
+
+export const save = (
+  <svg
+    aria-label=""
+    className="x1lliihq x1n2onr6 x1roi4f4"
+    fill="currentColor"
+    height="12"
+    role="img"
+    viewBox="0 0 24 24"
+    width="12"
+  >
+    <title></title>
+    <polygon
+      fill="none"
+      points="20 21 12 13.44 4 21 4 3 20 3 20 21"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></polygon>
+  </svg>
+);
+
+export const tag = (
+  <svg
+    aria-label=""
+    className="x1lliihq x1n2onr6 x1roi4f4"
+    fill="currentColor"
+    height="12"
+    role="img"
+    viewBox="0 0 24 24"
+    width="12"
+  >
+    <title></title>
+    <path
+      d="M10.201 3.797 12 1.997l1.799 1.8a1.59 1.59 0 0 0 1.124.465h5.259A1.818 1.818 0 0 1 22 6.08v14.104a1.818 1.818 0 0 1-1.818 1.818H3.818A1.818 1.818 0 0 1 2 20.184V6.08a1.818 1.818 0 0 1 1.818-1.818h5.26a1.59 1.59 0 0 0 1.123-.465Z"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></path>
+    <path
+      d="M18.598 22.002V21.4a3.949 3.949 0 0 0-3.948-3.949H9.495A3.949 3.949 0 0 0 5.546 21.4v.603"
+      fill="none"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></path>
+    <circle
+      cx="12.072"
+      cy="11.075"
+      fill="none"
+      r="3.556"
+      stroke="currentColor"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth="2"
+    ></circle>
+  </svg>
+);

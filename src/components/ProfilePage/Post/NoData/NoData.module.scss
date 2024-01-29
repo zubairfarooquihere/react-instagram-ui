@@ -1,0 +1,42 @@
+.NoData {
+  padding-top: 23px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__svg {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    transform: scale(2.5);
+    border-radius: 100%;
+    padding: 5px 5px;
+    margin-bottom: 30px !important;
+
+    svg {
+    }
+  }
+
+  &__title {
+    font-size: 30px;
+    font-weight: 900;
+    margin-bottom: 13px;
+  }
+
+  &__description {
+    font-size: 14.5px;
+    margin-bottom: 19px;
+  }
+
+  &__action {
+    cursor: pointer;
+    font-size: 14.5px;
+    color: #25a4f7;
+    font-weight: 550;
+
+    &:hover {
+      color: #14527c;
+    }
+  }
+}
