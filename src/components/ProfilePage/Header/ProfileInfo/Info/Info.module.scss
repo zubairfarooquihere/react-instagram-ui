@@ -1,7 +1,10 @@
 .Info {
   display: flex;
   flex-direction: column;
-  //width: 100%;
+  justify-content: center;
+  height: 100%;
+  width: 470px;
+  margin-left: 120px;
 }
 
 .header {
@@ -10,7 +13,7 @@
 
   span,
   button {
-    margin-right: 17px;
+    margin-right: 25px;
   }
 
   &__name {
@@ -48,7 +51,7 @@
   align-items: center;
 
   &__details {
-    margin-right: 30px;
+    margin-right: 40px;
     font-size: 15.5px;
   }
 
@@ -67,10 +70,10 @@
 }
 
 .footer {
-    margin-top: 20px;
+  margin-top: 20px;
 
-    &__name {
-        font-size: 15px;
-        font-weight: 550;
-    }
+  &__name {
+    font-size: 15px;
+    font-weight: 550;
+  }
 }

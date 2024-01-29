@@ -1,0 +1,58 @@
+.Navigation {
+  width: 100%;
+  margin-top: 50px;
+  display: flex;
+  flex-direction: column;
+
+  ul {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: center;
+    list-style: none;
+
+    li {
+      cursor: pointer;
+      margin-right: 60px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      font-size: 12px;
+      letter-spacing: 1px;
+      color: #909090;
+
+      span {
+        display: flex;
+        align-items: center;
+
+        svg {
+          margin-right: 7px;
+        }
+      }
+    }
+  }
+}
+
+.border {
+  position: relative;
+  //border: 1px solid black;
+  border: 1px solid rgb(242, 238, 238);
+}
+
+.ULborder {
+  position: relative;
+  z-index: 10;
+  border: 1px solid transparent;
+  //border: 1px solid rgb(187, 187, 187);
+  width: 100%;
+  margin-bottom: 20px;
+
+  &__selected {
+    border: 1px solid rgb(187, 187, 187);
+  }
+}
+
+.liSelected {
+  color: black !important;
+}
