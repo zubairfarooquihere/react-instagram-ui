@@ -1,7 +1,14 @@
+@import "../../../index.scss";
+
 .Stories {
   margin-top: 40px;
   width: 100%;
   padding-left: 40px;
+
+  @include respond(phone) {
+    margin-top: 50px;
+    padding-left: 0px;
+  }
 }
 
 .Story {
@@ -23,6 +30,11 @@
     height: 90px;
     width: 90px;
 
+    @include respond(phone) {
+      height: 60px;
+      width: 60px;
+    }
+
     &::after {
       content: ""; /* Add this line */
       background-color: rgb(250, 246, 246);
@@ -39,6 +51,10 @@
       top: 50%;
       transform: translate(-50%, -59%);
       color: gainsboro;
+
+      @include respond(phone) {
+        font-size: 40px;
+      }
     }
   }
 

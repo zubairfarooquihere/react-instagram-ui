@@ -5,7 +5,6 @@ import { Posts, save, tag } from "../../../ui/svg/ProfilePage";
 import Post from "../Post/Post";
 import Saved from "../Saved/Saved";
 import Tagged from "../Tagged/Tagged";
-import Footer from "../Footer/Footer";
 
 function Navigation() {
   const [liSelected, setLiSelected] = useState("POSTS");
@@ -31,7 +30,7 @@ function Navigation() {
               liSelected === "POSTS" ? classes.ULborder__selected : ""
             }`}
           />
-          <span>{Posts}POSTS</span>
+          <span>{Posts}<div className={classes.ULborder__text}>POSTS</div></span>
         </li>
         <li
           className={`${liSelected === "SAVED" ? classes.liSelected : ""}`}
@@ -45,7 +44,7 @@ function Navigation() {
               liSelected === "SAVED" ? classes.ULborder__selected : ""
             }`}
           />
-          <span>{save}SAVED</span>
+          <span>{save}<div className={classes.ULborder__text}>SAVED</div></span>
         </li>
         <li
           className={`${liSelected === "TAGGED" ? classes.liSelected : ""}`}
@@ -59,14 +58,13 @@ function Navigation() {
               liSelected === "TAGGED" ? classes.ULborder__selected : ""
             }`}
           />
-          <span>{tag}TAGGED</span>
+          <span>{tag}<div className={classes.ULborder__text}>TAGGED</div></span>
         </li>
       </ul>
       {liSelected === "POSTS" && <Post />}
       {liSelected === "SAVED" && <Saved />}
       {liSelected === "TAGGED" && <Tagged />}
     </div>
-      <Footer />
     </>
   );
 }

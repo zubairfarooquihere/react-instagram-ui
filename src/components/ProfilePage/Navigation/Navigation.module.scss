@@ -1,8 +1,14 @@
+@import "../../../index.scss";
+
 .Navigation {
   width: 100%;
   margin-top: 50px;
   display: flex;
   flex-direction: column;
+
+  @include respond(phone) {
+    margin-top: 0px;
+  }
 
   .ul {
     position: absolute;
@@ -11,6 +17,7 @@
     display: flex;
     justify-content: center;
     list-style: none;
+    width: 100%;
 
     li {
       cursor: pointer;
@@ -22,9 +29,18 @@
       letter-spacing: 1px;
       color: #909090;
 
+      @include respond(phone) {
+        width: 100%;
+        margin-right: 0px;
+      }
+
       span {
         display: flex;
         align-items: center;
+        
+        @include respond(phone) {
+          transform: scale(2);
+        }
 
         svg {
           margin-right: 7px;
@@ -38,21 +54,39 @@
   margin-bottom: 120px;
   position: relative;
   border: 1px solid rgb(242, 238, 238);
+
+  @include respond(phone) {
+    margin-bottom: 83px;
+  }
 }
 
 .ULborder {
   position: relative;
   z-index: 10;
   border: 1px solid transparent;
-  //border: 1px solid rgb(187, 187, 187);
   width: 100%;
   margin-bottom: 20px;
 
+  @include respond(phone) {
+    margin-bottom: 15px;
+  }
+
   &__selected {
     border: 1px solid rgb(187, 187, 187);
+  }
+
+  &__text {
+    
+    @include respond(phone) {
+      display: none;
+    }
   }
 }
 
 .liSelected {
   color: black !important;
+  
+  @include respond(phone) {
+    color: rgb(76, 151, 236) !important;
+  }
 }

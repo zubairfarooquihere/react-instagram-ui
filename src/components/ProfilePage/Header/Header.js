@@ -1,7 +1,6 @@
 import React from "react";
 import classes from "./Header.module.scss";
 
-//import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import Info from "./ProfileInfo/Info/Info";
 function Header() {
   return (

@@ -6,10 +6,12 @@ function Info() {
     <div className={classes.Info}>
       <header className={classes.header}>
         <span className={classes.header__name}>Classic._.Here</span>
-        <button className={`${classes.header__button} ${classes["header__button--editbtn"]}`}>Edit profile</button>
-        <button className={classes.header__button}>View archive</button>
-        <span className={classes.header__svg}>{Threads}</span>
-        <span className={classes.header__svg}>{Options}</span>
+        <div className={classes.header__btnGroup}>
+          <button className={`${classes.header__button} ${classes["header__button--editbtn"]}`}>Edit profile</button>
+          <button className={classes.header__button}>View archive</button>
+        </div>
+        <span className={`${classes.header__svg} ${classes['header__svg--Threads']}`}>{Threads}</span>
+        <span className={`${classes.header__svg} ${classes['header__svg--Options']}`}>{Options}</span>
       </header>
       <main className={classes.main}>
         <span className={`${classes.main__details} ${classes.main__posts}`}><span className={classes.main__number}>0</span> posts</span>
@@ -17,7 +19,7 @@ function Info() {
         <span className={`${classes.main__details} ${classes.main__following}`}><span className={classes.main__number}>380</span> following</span>
       </main>
       <footer className={classes.footer}>
-      <span className={classes.footer__name}>Classic Here</span>
+        <span className={classes.footer__name}>Classic Here</span>
       </footer>
     </div>
   );
